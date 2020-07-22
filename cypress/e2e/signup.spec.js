@@ -11,6 +11,6 @@ describe("when signing up user", () => {
     cy.findByText(/Submit/).click();
     cy.url().should("eq", "http://localhost:8080/restaurant/new");
     cy.window().its("localStorage.token").should("be.a", "string");
-    cy.findByTestId("no-bookmarks", {timeout: 500});
+    // cy.findByTestId("no-bookmarks", {timeout: 500});
   });
 });
