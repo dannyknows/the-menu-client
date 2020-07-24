@@ -6,16 +6,13 @@ import Buffer from "../buffer";
 class ProtectedRoute extends Component {
   state = {
     auth: false,
-    loading: true,
-    // TESTING UNCOMMENT FOR PRODUCTION
-    // auth: true,
-    // loading: false,
+    loading: true
   };
 
   componentDidMount() {
     const token = localStorage.getItem("token");
-    console.log(token)
-    if (token) {
+    const auth = localStorage.getItem("auth")
+    if (token.length > 75 && auth) {
       this.setState({
         auth: true,
         loading: false,

@@ -4,12 +4,12 @@ import { Route, Switch } from "react-router-dom";
 // home components
 import Home from "./Home";
 import NoMatch from "./noMatch";
-import Login from "./Login";
-import SignUp from "./SignUp";
+import Login from "./user/Login";
+import SignUp from "./user/SignUp";
 // user components
 import ProtectedRoute from "./user/protectedRoute";
-import Restaurant from "./restaurant/restuarant";
 import { RestaurantsContext, dispatch } from '../context/restaurants-context'
+import Restaurant from "./restaurant/restaurant";
 
 
 class App extends React.Component {
