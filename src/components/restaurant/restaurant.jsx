@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "../../App.scss";
-
 // components
 // import Nav from "./nav";
 import Menu from "./menu";
 
 export default class Restaurant extends Component {
-  state = { subdomain: this.props.match.params.subdomain , restaurant:""};
+  state = { subdomain: this.props.match.params.subdomain , restaurant: []};
+  
   async componentDidMount() {
     const { subdomain } = this.state;
     const response = await fetch(
@@ -17,7 +17,6 @@ export default class Restaurant extends Component {
   }
 
   renderRestaurant(restaurant){
-    console.log("HERE");
     const {name, menus, styles} = restaurant  
     return(
       <>
@@ -34,7 +33,6 @@ export default class Restaurant extends Component {
 
   render() {
     const { restaurant }  = this.state
-    console.log(restaurant);
     return restaurant ? this.renderRestaurant( restaurant ) : (<h1>No data</h1>);
   }
 }

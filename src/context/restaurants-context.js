@@ -1,9 +1,14 @@
 import React from 'react'
 
 function dispatch(action, value) {
-  console.log(this)
-  console.log(action)
-  console.log(value)
+  switch(action) {
+    case "populate": {
+      this.setState({ restaurants: value })
+      break;
+    } default: {
+      console.log("in default")
+    }
+  }
 }
 
 const RestaurantsContext = React.createContext({

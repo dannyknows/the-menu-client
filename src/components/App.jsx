@@ -10,6 +10,7 @@ import SignUp from "./user/SignUp";
 import ProtectedRoute from "./user/protectedRoute";
 import { RestaurantsContext, dispatch } from '../context/restaurants-context'
 import Restaurant from "./restaurant/restaurant";
+import NewRestaurant from "./restaurant/NewRestaurant";
 
 
 class App extends React.Component {
@@ -17,16 +18,17 @@ class App extends React.Component {
 
   render(){
     return (
-      <>
+      <RestaurantsContext.Provider value={this.state}>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/dashboard" component={ProtectedRoute} />
+          <ProtectedRoute exact path="/dashboard/new" component={NewRestaurant} />
           <Route exact path="/restaurant/:subdomain" component={Restaurant} />
           <Route component={NoMatch} />
         </Switch>
-      </>
+      </RestaurantsContext.Provider>
     );
   }
 }
