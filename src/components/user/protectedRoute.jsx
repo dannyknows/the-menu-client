@@ -14,7 +14,8 @@ class ProtectedRoute extends Component {
 
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if (token === "password") {
+    console.log(token)
+    if (token) {
       this.setState({
         auth: true,
         loading: false,
@@ -28,6 +29,7 @@ class ProtectedRoute extends Component {
 
   render() {
     const { loading, auth } = this.state;
+    console.log(loading,auth)
     if (!loading && !auth) {
       return <Redirect to="/" />;
     } else if (!loading && auth) {
