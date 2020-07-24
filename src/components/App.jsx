@@ -4,11 +4,11 @@ import { Route, Switch } from "react-router-dom";
 // home components
 import Home from "./Home";
 import NoMatch from "./noMatch";
-import Login from "./Login";
-import SignUp from "./SignUp";
+import Login from "./user/Login";
+import SignUp from "./user/SignUp";
 // user components
 import ProtectedRoute from "./user/protectedRoute";
-import Restaurant from "./restaurant/restuarant";
+import Restaurant from "./restaurant/restaurant";
 
 const apiData = "hello"
 

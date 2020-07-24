@@ -1,14 +1,22 @@
-import React, { Component } from "react";
+import React, { Component }  from "react";
+import styled from "styled-components";
 
-export default class Item extends Component {
-  constructor(props) {
-    super(props);
+const ItemDiv = styled.div`
+  border: solid 1px black;
+  font-size: 1.5em;
+  margin-bottom: 2px;
+  box-shadow: 5px 5px 15px rgba(grey, 0.5);
+  border-radius: 10px;
+  .image {
+    color: white;
   }
+`;
 
+class Bold extends Component {
   render() {
     const { name, ingredients, sizes, styles, themes, tags } = this.props.item;
     return (
-      <div>
+      <ItemDiv>
         <div className="image">image goes here</div>
         <div>
           <h1>{name && name}</h1>
@@ -28,7 +36,9 @@ export default class Item extends Component {
                   .join(", ")}
           </p>
         </div>
-      </div>
+      </ItemDiv>
     );
   }
 }
+
+export default Bold;
