@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // components
-import Bold from "./styledComponents/bold";
+import Bold from "./itemComponents/bold";
 
 export default class Menu extends Component {
   render() {
