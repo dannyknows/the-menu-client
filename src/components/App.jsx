@@ -10,6 +10,8 @@ import SignUp from "./SignUp";
 import ProtectedRoute from "./user/protectedRoute";
 import Restaurant from "./restaurant/restuarant";
 
+const apiData = "hello"
+
 function App() {
   return (
     <>
@@ -18,7 +20,8 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/sign-up" component={SignUp} />
         <Route exact path="/dashboard" component={ProtectedRoute} />
-        <Route exact path="/restaurant" render={() => <Restaurant {...apiData} />} />
+        <Route exact path="/restaurant/" render={() => <Restaurant {...apiData} />} />
+        <Route exact path="/restaurant/:subdomain" component={Restaurant} />
         <Route component={NoMatch} />
       </Switch>
     </>
