@@ -5,8 +5,11 @@ import Buffer from "../buffer";
 
 class ProtectedRoute extends Component {
   state = {
-    auth: false,
-    loading: true,
+    // auth: false,
+    // loading: true,
+    // TESTING UNCOMMENT FOR PRODUCTION
+    auth: true,
+    loading: false,
   };
 
   componentDidMount() {
