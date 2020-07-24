@@ -17,7 +17,6 @@ export default class Restaurant extends Component {
   }
 
   renderRestaurant(restaurant){
-    console.log("HERE");
     const {name, menus, styles} = restaurant  
     return(
       <>
