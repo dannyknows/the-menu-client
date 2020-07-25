@@ -25,6 +25,7 @@ class ContactForm extends React.Component {
         info: this.state.info,
       },
     };
+    console.log(event);
     const response = await fetch(
       `http://localhost:3000/restaurants/${this.state.res_id}/contact_infos`,
       {
@@ -37,21 +38,16 @@ class ContactForm extends React.Component {
       }
     );
     const newContactInfo = await response.json()
-    console.log(newContactInfo)
-    // this.props.getRestaurants();
-    console.log("GOING INTO DISPATCH")
-    this.context.dispatch("new contact info", {res_index: this.props.res_index, contact_info: body.contact_info});
+    this.context.dispatch("new contact", newContactInfo);
+    document.getElementById("contact_form").reset();
     const { history } = this.props;
     if(history) history.push('/dashboard');
-
-
-    // this.props.history.push("/bookmarks");
   };
 
   render() {
     return (
       <>
-        <form onSubmit={this.onFormSubmit}>
+        <form id="contact_form" onSubmit={this.onFormSubmit}>
           <input
             type="text"
             name="name"

@@ -42,6 +42,15 @@ class UserRestaurants extends React.Component {
     console.log('hello')
   }
   
+  deleteContact = async (rest_id, cont_id) => {
+    await fetch(`http://localhost:3000/restaurants/${rest_id}/contact_infos/${cont_id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    this.context.dispatch("remove contact",{restaurant_id: rest_id, contact_id: cont_id})
+  }
 
   render() {
     const { width } = this.state;
@@ -82,6 +91,7 @@ class UserRestaurants extends React.Component {
                       <td>{contact_info.info}</td>
                     </tr>
                   </table>
+                  <li onClick={() => this.deleteContact(contact_info.restaurant_id,contact_info.id)}>Delete</li>
                 </div>
               );
             })}

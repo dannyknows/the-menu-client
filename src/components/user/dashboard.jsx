@@ -50,7 +50,6 @@ class Dashboard extends Component {
   }
 
   deleteRestaurant = async (id) => {
-    console.log("hello");
     await fetch(`http://localhost:3000/restaurants/${id}`, {
       method: "DELETE",
       headers: {
@@ -61,7 +60,6 @@ class Dashboard extends Component {
   };
 
   render() {
-    console.log(this.context);
     this.context.dispatch();
     return (
       <div>
