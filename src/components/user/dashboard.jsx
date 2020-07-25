@@ -49,16 +49,6 @@ class Dashboard extends Component {
     }
   }
 
-  deleteRestaurant = async (id) => {
-    await fetch(`http://localhost:3000/restaurants/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    this.getRestaurants();
-  };
-
   render() {
     this.context.dispatch();
     return (

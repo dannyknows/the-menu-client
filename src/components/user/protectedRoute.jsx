@@ -77,7 +77,6 @@ class ProtectedRoute extends Component {
         // localStorage.setItem('token', jwt)
         const token = localStorage.getItem("token");
         const auth = localStorage.getItem("auth");
-        console.log(this.context)
         this.context.dispatch("populate", restaurants);
         this.setState({
           auth: true,
@@ -92,9 +91,7 @@ class ProtectedRoute extends Component {
   }
   
   render() {
-    console.log(process.env.REACT_APP_BACKEND_URL)
     const { loading, auth } = this.state;
-    console.log(loading, auth);
     if (!loading && !auth) {
       return <Redirect to="/" />;
     } else if (!loading && auth) {
