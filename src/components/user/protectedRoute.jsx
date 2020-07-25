@@ -77,6 +77,7 @@ class ProtectedRoute extends Component {
         // localStorage.setItem('token', jwt)
         const token = localStorage.getItem("token");
         const auth = localStorage.getItem("auth");
+        console.log(this.context)
         this.context.dispatch("populate", restaurants);
         this.setState({
           auth: true,

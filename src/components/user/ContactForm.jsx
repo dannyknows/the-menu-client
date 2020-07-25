@@ -18,7 +18,6 @@ class ContactForm extends React.Component {
 
   onFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state);
     const body = {
       contact_info: {
         name: this.state.name,
@@ -26,7 +25,6 @@ class ContactForm extends React.Component {
         info: this.state.info,
       },
     };
-    console.log(body);
     const response = await fetch(
       `http://localhost:3000/restaurants/${this.state.res_id}/contact_infos`,
       {
@@ -38,10 +36,15 @@ class ContactForm extends React.Component {
         body: JSON.stringify(body),
       }
     );
+    const newContactInfo = await response.json()
+    console.log(newContactInfo)
+    // this.props.getRestaurants();
+    console.log("GOING INTO DISPATCH")
+    this.context.dispatch("new contact info", {res_index: this.props.res_index, contact_info: body.contact_info});
     const { history } = this.props;
     if(history) history.push('/dashboard');
-    // const newBookmark = await response.json()
-    // // this.context.dispatch("add", newBookmark)
+
+
     // this.props.history.push("/bookmarks");
   };
 
@@ -70,7 +73,6 @@ class ContactForm extends React.Component {
           </select>
           <input type="submit" value="Add Contact Detail" />
         </form>
-        {console.log(this.state)}
       </>
     );
   }

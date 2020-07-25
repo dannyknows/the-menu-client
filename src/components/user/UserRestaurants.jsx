@@ -85,7 +85,8 @@ class UserRestaurants extends React.Component {
                 </div>
               );
             })}
-            <ContactForm res_id={restaurant.id} />
+            {console.log(this.props)}
+            <ContactForm res_id={restaurant.id} res_index={index} getRestaurants={this.props.getRestaurants}/>
 
             <div className="edit-delete-container">
               <Link to={`/restaurant/${restaurant.subdomain}`}> View </Link>
