@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import UserRestaurants from "./UserRestaurants";
+import Banner from '../shared/Banner'
 
 class Dashboard extends Component {
   static contextType = RestaurantsContext;
@@ -39,7 +40,7 @@ class Dashboard extends Component {
     this.context.dispatch();
     return (
       <div>
-        <h1>Welcome back!</h1>
+        <Banner>Welcome Back</Banner>
         <div>
           <h2>Account</h2>
           <div>

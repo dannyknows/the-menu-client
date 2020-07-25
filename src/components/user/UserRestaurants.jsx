@@ -1,15 +1,28 @@
 import React from "react";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import { Link } from "react-router-dom";
+import ContactForm from "./ContactForm";
+
+
 
 class UserRestaurants extends React.Component {
   static contextType = RestaurantsContext;
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       width: window.innerWidth,
+      contact_name: "",
+      contact_info: "",
+      contact_info_type: ""
     };
   }
+
+  onInputChange = (event) => {
+    const key = event.target.id;
+    this.setState({
+      [key]: event.target.value,
+    });
+  };
 
   componentWillMount() {
     window.addEventListener("resize", this.handleWindowSizeChange);
@@ -24,6 +37,11 @@ class UserRestaurants extends React.Component {
   handleWindowSizeChange = () => {
     this.setState({ width: window.innerWidth });
   };
+
+  inputChange = (event) => {
+    console.log('hello')
+  }
+  
 
   render() {
     const { width } = this.state;
@@ -49,17 +67,17 @@ class UserRestaurants extends React.Component {
           <div key={index} className="restaurant">
             <h3>{restaurant.name} </h3>
             <p>{restaurant.opening_hours}</p>
+                    <ul>
+                      <li>Name</li>
+                      <li>Type</li>
+                      <li>Information</li>
+                    </ul>
             {restaurant.contact_infos.map((contact_info, index) => {
               return (
                 <div key={index} className="contact_info">
                   <table>
-                    <th>
-                      <td>Name</td>
-                      <td>Type</td>
-                      <td>Information</td>
-                    </th>
                     <tr>
-                      <td>{contact_info.name}</td>
+                      <td onClick={this.inputChange}>{contact_info.name}</td>
                       <td>{contact_info.info_type}</td>
                       <td>{contact_info.info}</td>
                     </tr>
@@ -67,7 +85,7 @@ class UserRestaurants extends React.Component {
                 </div>
               );
             })}
-            <button>Add Contact Detail</button>
+            <ContactForm res_id={restaurant.id} />
 
             <div className="edit-delete-container">
               <Link to={`/restaurant/${restaurant.subdomain}`}> View </Link>

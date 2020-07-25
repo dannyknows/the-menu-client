@@ -11,6 +11,40 @@ class ProtectedRoute extends Component {
     loading: true,
   };
 
+  // getRestaurants = async () => {
+  //   return await fetch(`http://localhost:3000/restaurants`, {
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //     },
+  //   });
+  // };
+
+  // checkStatusCode = (response) => {
+  //   if (response.status >= 400) {
+  //     throw new Error("not authorized");
+  //   }
+  // };
+
+  // setTokenAndDispatch = async (response) => {
+  //   const { jwt, restaurants } = await response.json();
+  //   localStorage.setItem("token", jwt);
+  //   this.context.dispatch("populate", restaurants);
+  // };
+
+  // setLoading = () => this.setState({ loading: false });
+
+  // async componentDidMount() {
+  //   try {
+  //     const response = await this.getBookmarks()
+  //     this.checkStatusCode(response)
+  //     await this.setTokenAndDispatch(response)
+  //   } catch (err) {
+  //     this.context.dispatch("logout")
+  //   } finally {
+  //     this.setLoading()
+  //   }
+  // }
+
   async componentDidMount() {
     // if (token.length > 75 && auth) {
     //   this.setState({
@@ -47,8 +81,9 @@ class ProtectedRoute extends Component {
       });
     }
   }
-
+  
   render() {
+    console.log(process.env.REACT_APP_BACKEND_URL)
     const { loading, auth } = this.state;
     console.log(loading, auth);
     if (!loading && !auth) {
