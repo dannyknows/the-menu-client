@@ -25,7 +25,6 @@ class ContactForm extends React.Component {
         info: this.state.info,
       },
     };
-    console.log(event);
     const response = await fetch(
       `http://localhost:3000/restaurants/${this.state.res_id}/contact_infos`,
       {
