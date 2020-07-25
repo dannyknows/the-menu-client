@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Dashboard from "./dashboard";
+import Restaurant from "../restaurant/restaurant";
 import Buffer from "../buffer";
 import { RestaurantsContext } from "../../context/restaurants-context";
 
@@ -46,6 +47,13 @@ class ProtectedRoute extends Component {
   // }
 
   async componentDidMount() {
+    const token = localStorage.getItem("token");
+     const auth = localStorage.getItem("auth");
+    if (token && auth) {
+        this.setState({
+          auth: true,
+          loading: false})
+        }
     // if (token.length > 75 && auth) {
     //   this.setState({
     //     auth: true,
@@ -89,7 +97,14 @@ class ProtectedRoute extends Component {
     if (!loading && !auth) {
       return <Redirect to="/" />;
     } else if (!loading && auth) {
-      return <Dashboard />;
+      return (
+        <>
+          <Switch>
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/restaurant/:subdomain/:state" component={Restaurant} />
+          </Switch>
+        </>
+      );
     } else {
       return <Buffer />;
     }

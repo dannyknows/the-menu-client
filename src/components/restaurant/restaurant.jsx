@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Buffer from "../buffer";
 import "../../App.scss";
 // components
 // import Nav from "./nav";
@@ -9,11 +10,9 @@ export default class Restaurant extends Component {
   
   async componentDidMount() {
     const { subdomain } = this.state;
-    const response = await fetch(
-      `http://localhost:3000/getrestaurants/${subdomain}`
-    );
+    const response = await fetch(`http://localhost:3000/getrestaurants/${subdomain}`);
     const json_response = await response.json();
-    this.setState({restaurant: json_response.restaurant});
+    this.setState({ restaurant: json_response.restaurant });
   }
 
   renderRestaurant(restaurant){
@@ -25,14 +24,14 @@ export default class Restaurant extends Component {
           {menus &&
             menus.map((menu) => {
               return <Menu menu={menu} />;
-          })}
+            })}
         </div>
       </>
-    )
+    );
   }
 
   render() {
-    const { restaurant }  = this.state
-    return restaurant ? this.renderRestaurant( restaurant ) : (<h1>No data</h1>);
+    const { restaurant } = this.state;
+    return restaurant ? this.renderRestaurant(restaurant) : <Buffer />;
   }
 }

@@ -26,6 +26,7 @@ class App extends React.Component {
           <Route exact path="/dashboard" component={ProtectedRoute} />
           <ProtectedRoute exact path="/dashboard/new" component={NewRestaurant} />
           <Route exact path="/restaurant/:subdomain" component={Restaurant} />
+          <Route exact path="/restaurant/:subdomain/:state" component={ProtectedRoute}/>
           <Route component={NoMatch} />
         </Switch>
       </RestaurantsContext.Provider>
