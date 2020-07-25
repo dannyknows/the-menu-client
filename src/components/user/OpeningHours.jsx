@@ -11,11 +11,7 @@ class OpeningHours extends React.Component {
     });
   };
 
-  onFormSubmit = async (event) =>{
-    event.preventDefault();
-    const test = { opening_hours: [...this.state.opening_hours, {day:this.state.day,opening_hours:`${this.state.open_hr}:${this.state.open_min} ${this.state.open_ampm}`,closing_hours:`${this.state.close_hr}:${this.state.close_min} ${this.state.close_ampm}`}] }
-    const string_data = JSON.stringify(test)
-    console.log(this.props.restaurant_id)
+  updateHours = async (string_data) => {
     await fetch(`http://localhost:3000/restaurants/${this.props.restaurant_id}`,
       {
         method: "PUT",
@@ -26,7 +22,23 @@ class OpeningHours extends React.Component {
         body: JSON.stringify({ opening_hours: string_data }),
       }
     );
+  }
+
+  onFormSubmit = async (event) =>{
+    event.preventDefault();
+    const test = { opening_hours: [...this.state.opening_hours, {day:this.state.day,opening_hours:`${this.state.open_hr}:${this.state.open_min} ${this.state.open_ampm}`,closing_hours:`${this.state.close_hr}:${this.state.close_min} ${this.state.close_ampm}`}] };
+    const string_data = JSON.stringify(test);
+    console.log(this.props.restaurant_id);
+    this.updateHours(string_data);
     this.setState({opening_hours: test.opening_hours});
+  }
+
+  deleteHours = (i) => {
+    const data = this.state.opening_hours;
+    data.splice(i,1);
+    const string_data = JSON.stringify({ opening_hours: data } )
+    this.updateHours(string_data);
+    this.setState({ opening_hours: data });
   }
 
   render() {
@@ -35,12 +47,13 @@ class OpeningHours extends React.Component {
       <div>
         <Table>
           {console.log(this.state)}
-          {this.state.opening_hours.map((oh) => {
+          {this.state.opening_hours.map((oh, index) => {
             return (
               <ul>
                 <li>{oh.day}</li>
                 <li>{oh.opening_hours}</li>
                 <li>{oh.closing_hours}</li>
+                <li><button onClick={() => this.deleteHours(index)}>Delete</button></li>
               </ul>
             );
           })}
