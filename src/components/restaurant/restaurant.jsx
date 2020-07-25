@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Buffer from '../buffer'
+import Buffer from "../buffer";
 import "../../App.scss";
 
 // components
@@ -7,34 +7,31 @@ import "../../App.scss";
 import Menu from "./menu";
 
 export default class Restaurant extends Component {
-  state = { subdomain: this.props.match.params.subdomain , restaurant:""};
+  state = { subdomain: this.props.match.params.subdomain, restaurant: "" };
   async componentDidMount() {
     const { subdomain } = this.state;
-    const response = await fetch(
-      `http://localhost:3000/getrestaurants/${subdomain}`
-    );
+    const response = await fetch(`http://localhost:3000/getrestaurants/${subdomain}`);
     const json_response = await response.json();
-    this.setState({restaurant: json_response.restaurant});
+    this.setState({ restaurant: json_response.restaurant });
   }
 
-  renderRestaurant(restaurant){
-    const {name, menus, styles} = restaurant  
-    return(
+  renderRestaurant(restaurant) {
+    const { name, menus, styles } = restaurant;
+    return (
       <>
         {/* <Nav menus={menus} name={name} style={styles}/> */}
         <div id="menus">
           {menus &&
             menus.map((menu) => {
               return <Menu menu={menu} />;
-          })}
+            })}
         </div>
       </>
-    )
+    );
   }
 
   render() {
-    const { restaurant }  = this.state
-    console.log(restaurant);
-    return restaurant ? this.renderRestaurant( restaurant ) : <Buffer/> ;
+    const { restaurant } = this.state;
+    return restaurant ? this.renderRestaurant(restaurant) : <Buffer />;
   }
 }
