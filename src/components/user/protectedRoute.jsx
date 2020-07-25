@@ -1,18 +1,20 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
+
 import Dashboard from "./dashboard";
+import Restaurant from "../restaurant/restaurant";
 import Buffer from "../buffer";
 
 class ProtectedRoute extends Component {
   state = {
     auth: false,
-    loading: true
+    loading: true,
   };
 
   componentDidMount() {
     const token = localStorage.getItem("token");
-    const auth = localStorage.getItem("auth")
-    if (token.length > 75 && auth) {
+    const auth = localStorage.getItem("auth");
+    if (token && auth) {
       this.setState({
         auth: true,
         loading: false,
@@ -29,7 +31,14 @@ class ProtectedRoute extends Component {
     if (!loading && !auth) {
       return <Redirect to="/" />;
     } else if (!loading && auth) {
-      return <Dashboard />;
+      return (
+        <>
+          <Switch>
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/restaurant/:subdomain/:state" component={Restaurant} />
+          </Switch>
+        </>
+      );
     } else {
       return <Buffer />;
     }
