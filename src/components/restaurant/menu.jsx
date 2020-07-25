@@ -1,29 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
+//themes
+import Default from "./menuStyledComponents/defaultMenu";
 
-// components
-import Bold from "./itemComponents/bold";
-
-export default class Menu extends Component {
-  render() {
-    const { title, items, styles, theme } = this.props.menu;
-    console.log(this.props);
-    return (
-      <div id={`${title}`}>
-        <h1>{title}</h1>
-        <div>
-          {items &&
-            items.map((item) => {
-              // switch (item.theme.theme_class) {
-              // UNCOMMENT FOR PRODUCTION
-              switch ("bold") {
-                case "bold":
-                  return <Bold item={item} />;
-                default:
-                  return "default";
-              }
-            })}
-        </div>
-      </div>
-    );
+const Menu = (props) => {
+  // UNCOMMENT FOR PRODUCTION
+  // switch (props.menu.theme.theme_class) {
+  switch ("DEVELOPMENT") {
+    case "bold":
+      return;
+    case "minimal":
+      return;
+    default:
+      return <Default menu={props.menu}/>;
   }
-}
+};
+
+export default Menu;

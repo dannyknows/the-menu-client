@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Buffer from '../buffer'
 import "../../App.scss";
 
 // components
@@ -17,7 +18,6 @@ export default class Restaurant extends Component {
   }
 
   renderRestaurant(restaurant){
-    console.log("HERE");
     const {name, menus, styles} = restaurant  
     return(
       <>
@@ -35,6 +35,6 @@ export default class Restaurant extends Component {
   render() {
     const { restaurant }  = this.state
     console.log(restaurant);
-    return restaurant ? this.renderRestaurant( restaurant ) : (<h1>No data</h1>);
+    return restaurant ? this.renderRestaurant( restaurant ) : <Buffer/> ;
   }
 }
