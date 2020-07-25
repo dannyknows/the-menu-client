@@ -1,21 +1,61 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { RestaurantsContext } from "../../context/restaurants-context";
+import UserRestaurants from "./UserRestaurants";
+import Banner from '../shared/Banner'
 
-export default class Dashboard extends Component {
-  async componentDidMount() {
-    const response = await fetch("http://localhost:3000/restaurants", {
+class Dashboard extends Component {
+  static contextType = RestaurantsContext;
+  state = {
+    width: window.innerWidth,
+  };
+
+  componentWillMount() {
+    window.addEventListener("resize", this.handleWindowSizeChange);
+  }
+
+  // make sure to remove the listener
+  // when the component is not mounted anymore
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
+  deleteRestaurant = async (id) => {
+    console.log("hello");
+    await fetch(`http://localhost:3000/restaurants/${id}`, {
+      method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    const restaurants = await response.json();
-  }
+    this.getRestaurants();
+  };
 
   render() {
-    console.log("dashboard")
+    console.log(this.context);
+    this.context.dispatch();
     return (
-      <>
-        <h1> user dashboard </h1>
-      </>
+      <div>
+        <Banner>Welcome Back</Banner>
+        <div>
+          <h2>Account</h2>
+          <div>
+            <h4>NAME</h4>
+            <h4>Email</h4>
+            <button>Edit</button>
+          </div>
+        </div>
+        <hr />
+        <h2>Restaurants</h2>
+        <UserRestaurants />
+        <Link to="/dashboard/new">Add a New Restaurant</Link>
+      </div>
     );
   }
 }
+
+export default Dashboard;
