@@ -91,9 +91,7 @@ class ProtectedRoute extends Component {
   }
   
   render() {
-    console.log(process.env.REACT_APP_BACKEND_URL)
     const { loading, auth } = this.state;
-    console.log(loading, auth);
     if (!loading && !auth) {
       return <Redirect to="/" />;
     } else if (!loading && auth) {

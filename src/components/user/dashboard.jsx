@@ -24,19 +24,32 @@ class Dashboard extends Component {
     this.setState({ width: window.innerWidth });
   };
 
-  deleteRestaurant = async (id) => {
-    console.log("hello");
-    await fetch(`http://localhost:3000/restaurants/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    this.getRestaurants();
-  };
+  async getRestaurants(){
+    try {
+      const response = await fetch("http://localhost:3000/restaurants", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (response.status >= 400) {
+        throw new Error("not authorized");
+      } else {
+        const { jwt, restaurants } = await response.json();
+        // localStorage.setItem('token', jwt)
+        const token = localStorage.getItem("token");
+        const auth = localStorage.getItem("auth");
+        this.context.dispatch("populate", restaurants);
+        this.setState({
+          auth: true,
+          loading: false,
+        });
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   render() {
-    console.log(this.context);
     this.context.dispatch();
     return (
       <div>
@@ -51,7 +64,7 @@ class Dashboard extends Component {
         </div>
         <hr />
         <h2>Restaurants</h2>
-        <UserRestaurants />
+        <UserRestaurants getRestaurants={this.getRestaurants}/>
         <Link to="/dashboard/new">Add a New Restaurant</Link>
       </div>
     );
