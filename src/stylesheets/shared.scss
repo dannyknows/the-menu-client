@@ -7,7 +7,6 @@
   font-size: 1.1em;
   color: black;
   margin: 10px;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .button1:hover{
@@ -18,7 +17,7 @@
 }
 
 .button2{
-  border: 2px dashed #E0D3CC;;
+  border: 2px solid #E0D3CC;
   padding: 5px;
   width: 150px;
   text-decoration: none;
