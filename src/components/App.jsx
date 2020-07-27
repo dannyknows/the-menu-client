@@ -25,6 +25,8 @@ class App extends React.Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/dashboard" component={ProtectedRoute} />
+          <Route exact path="/dashboard/item" component={ProtectedRoute} />
+          <Route exact path="/theme" component={ProtectedRoute} />
           <ProtectedRoute exact path="/dashboard/new" component={NewRestaurant} />
           <Route exact path="/restaurant/:subdomain" component={Restaurant} />
           <Route exact path="/restaurant/:subdomain/:state" component={ProtectedRoute}/>
