@@ -9,17 +9,21 @@ function findIndex(array, id) {
 function dispatch(action, value) {
   switch (action) {
     case "populate":
-      this.setState({ restaurants: value, auth: true });
+      this.setState({ restaurants: value.restaurants, auth: true, currentUser: value.user });
+      break;
+    case "update user":
+      console.log(value)
+      this.setState({currentUser: {id: value.id, email: value.email, full_name: value.full_name}});
       break;
     case "delete restaurant":
       this.setState((state) => {
         const restaurants = state.restaurants.filter((restaurant) => {
-          return restaurant.id !== value
-        })
+          return restaurant.id !== value;
+        });
         return {
-          restaurants: restaurants
-        }
-      })
+          restaurants: restaurants,
+        };
+      });
       break;
     case "new contact":
       this.setState((state) => {

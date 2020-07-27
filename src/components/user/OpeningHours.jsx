@@ -29,6 +29,7 @@ class OpeningHours extends React.Component {
     const test = { opening_hours: [...this.state.opening_hours, {day:this.state.day, opening_hours: {open_hr:this.state.open_hr , open_min:this.state.open_min , open_ampm : this.state.open_ampm} , closing_hours: {close_hr: this.state.close_hr , close_min: this.state.close_min , close_ampm: this.state.close_ampm}}] };
     const string_data = JSON.stringify(test);
     this.updateHours(string_data);
+    console.log(string_data)
     this.setState({opening_hours: test.opening_hours});
   }
 
@@ -62,7 +63,7 @@ class OpeningHours extends React.Component {
           {this.state.opening_hours.map((oh, index) => {
             return index === this.state.edit_oh_index ? (
             <form id="opening_hours_form" onSubmit={this.saveEditHours}>
-            <ul>
+            <ul key={index}>
               <li>
                 <select name="edit_day" id="edit_day" onChange={this.onInputChange} value={this.state.edit_day}>
                   <option value="Monday">Monday</option>
@@ -182,7 +183,7 @@ class OpeningHours extends React.Component {
             </ul>
           </form>
             ) : (
-              <ul>
+              <ul key={index}>
                 <li>{oh.day}</li>
                 <li>{oh.opening_hours.open_hr}:{oh.opening_hours.open_min}{oh.opening_hours.open_ampm}</li>
                 <li>{oh.closing_hours.close_hr}:{oh.closing_hours.close_min}{oh.closing_hours.close_ampm}</li>
@@ -300,7 +301,7 @@ class OpeningHours extends React.Component {
                 </select>
               </li>
               <li>
-                <input type="submit" value="Add Contact Detail" />
+                <input type="submit" value="Add Opening Hours" />
               </li>
             </ul>
           </form>
