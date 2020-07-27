@@ -17,20 +17,28 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <Banner>The Menu</Banner>
+        <header>
         {this.context.currentUser || localStorage.getItem("auth") ? (
           <>
-            <Link to="/dashboard">Dashboard</Link>
-            <button id="logout" onClick={() => this.handleLogout()}>
+            <Link className="button2" to="/dashboard">Dashboard</Link>
+            <button className="button2" id="logout" onClick={() => this.handleLogout()}>
               Logout
             </button>
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/sign-up">Sign Up</Link>
+            <Link className="button2" to="/login">Login</Link>
+            <Link className="button2" to="/sign-up">Sign Up</Link>
           </>
         )}
+        </header>
+        <div className="content">
+          <div className="title">
+          <h1>The Menu</h1>
+          <p>Create a Website for Your Restaurant in minutes</p>
+          <Link className="button1" to="/sign-up">Register Now!</Link>
+          </div>
+        </div>
       </div>
     );
   }

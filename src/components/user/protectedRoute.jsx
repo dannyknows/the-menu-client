@@ -6,6 +6,7 @@ import Buffer from "../buffer";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import Item from "../user/Item";
 import StyleView from './StyleView';
+import NewRestaurant from '../restaurant/NewRestaurant';
 
 class ProtectedRoute extends Component {
   static contextType = RestaurantsContext;
@@ -74,6 +75,7 @@ class ProtectedRoute extends Component {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/restaurant/:subdomain/:state" component={Restaurant} />
             <Route exact path="/theme" component={StyleView} />
+            <Route exact path="/dashboard/new" component={NewRestaurant} />
           </Switch>
         </>
       );

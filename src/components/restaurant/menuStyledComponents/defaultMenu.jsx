@@ -18,7 +18,6 @@ const MenuDiv = styled.div`
 `;
 
 const Menu = (props) => {
-  console.log(props.menu.styles);
   const { title, items } = props.menu;
   return (
     <MenuDiv styles={props.menu.styles.styles_data}>

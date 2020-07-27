@@ -42,7 +42,6 @@ class EditableField extends React.Component {
   }
   
   render() {
-    console.log(this.state.itemTitle);
     return (
       <div>
         {this.state.itemEdit ? ( this.getInputFormat(this.props.inputStyle)

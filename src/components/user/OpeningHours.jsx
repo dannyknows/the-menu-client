@@ -2,7 +2,7 @@ import React from "react";
 import Table from "../shared/Table";
 
 class OpeningHours extends React.Component {
-  state = {...JSON.parse(this.props.opening_hours),test:"",day: "Monday",open_hr:"12",open_min:"00",open_ampm:"am",close_hr:"1",close_min:"00",close_ampm:"am",edit_oh_index:""};
+  state = { opening_hours: this.props.opening_hours.opening_hours ,test:"",day: "Monday",open_hr:"12",open_min:"00",open_ampm:"am",close_hr:"1",close_min:"00",close_ampm:"am",edit_oh_index:""};
 
   onInputChange = (event) => {
     const key = event.target.id;
@@ -12,24 +12,27 @@ class OpeningHours extends React.Component {
   };
 
   updateHours = async (string_data) => {
-    await fetch(`http://localhost:3000/restaurants/${this.props.restaurant_id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ opening_hours: string_data }),
-      }
-    );
+    if(this.props.restaurant_id){
+      await fetch(`http://localhost:3000/restaurants/${this.props.restaurant_id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ opening_hours: string_data }),
+        }
+      );
+    }else{
+      this.props.setOpeningHours(JSON.parse(string_data))
+    }
   }
 
-  onFormSubmit = async (event) =>{
+  saveNewHours= async (event) =>{
     event.preventDefault();
     const test = { opening_hours: [...this.state.opening_hours, {day:this.state.day, opening_hours: {open_hr:this.state.open_hr , open_min:this.state.open_min , open_ampm : this.state.open_ampm} , closing_hours: {close_hr: this.state.close_hr , close_min: this.state.close_min , close_ampm: this.state.close_ampm}}] };
     const string_data = JSON.stringify(test);
     this.updateHours(string_data);
-    console.log(string_data)
     this.setState({opening_hours: test.opening_hours});
   }
 
@@ -39,12 +42,10 @@ class OpeningHours extends React.Component {
     opening_hours[this.state.edit_oh_index] = {day:this.state.edit_day, opening_hours: {open_hr:this.state.edit_open_hr , open_min:this.state.edit_open_min , open_ampm : this.state.edit_open_ampm} , closing_hours: {close_hr: this.state.edit_close_hr , close_min: this.state.edit_close_min , close_ampm: this.state.edit_close_ampm}}
     const string_data = JSON.stringify({opening_hours: opening_hours});
     this.updateHours(string_data);
-    console.log(opening_hours)
     this.setState({ opening_hours: opening_hours, edit_oh_index: "" });
   }
 
   editHours = (i,oh) => {
-    console.log(oh);
     this.setState({edit_oh_index: i, edit_day: oh.day, edit_open_hr: oh.opening_hours.open_hr, edit_open_min: oh.opening_hours.open_min, edit_open_ampm: oh.opening_hours.open_ampm, edit_close_hr: oh.closing_hours.close_hr, edit_close_min: oh.closing_hours.close_min, edit_close_ampm: oh.closing_hours.close_ampm});
   }
 
@@ -57,6 +58,7 @@ class OpeningHours extends React.Component {
   }
 
   render() {
+    console.log(this.state.opening_hours)
     return (
       <div>
         <Table>
@@ -191,7 +193,7 @@ class OpeningHours extends React.Component {
               </ul>
             );
           })}
-          <form id="opening_hours_form" onSubmit={this.onFormSubmit}>
+          <form id="opening_hours_form" onSubmit={this.saveNewHours}>
             <ul>
               <li>
                 <select name="day" id="day" onChange={this.onInputChange}>

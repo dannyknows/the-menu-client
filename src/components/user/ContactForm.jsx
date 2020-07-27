@@ -18,30 +18,34 @@ class ContactForm extends React.Component {
 
   onFormSubmit = async (event) => {
     event.preventDefault();
-    const body = {
-      contact_info: {
-        name: this.state.name,
-        info_type: this.state.info_type,
-        info: this.state.info,
-      },
-    };
-    const response = await fetch(
-      `http://localhost:3000/restaurants/${this.state.res_id}/contact_infos`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+    if(this.props.restaurant){
+      const body = {
+        contact_info: {
+          name: this.state.name,
+          info_type: this.state.info_type,
+          info: this.state.info,
         },
-        body: JSON.stringify(body),
-      }
-    );
-    const newContactInfo = await response.json();
-    this.context.dispatch("new contact", newContactInfo);
+      };
+      const response = await fetch(
+        `http://localhost:3000/restaurants/${this.state.res_id}/contact_infos`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      const newContactInfo = await response.json();
+      this.context.dispatch("new contact", newContactInfo);
+      this.setState({ info_type: "link", name: undefined, info: undefined });
+      const { history } = this.props;
+      if (history) history.push("/dashboard");
+    }else{
+      
+    }
     document.getElementById("contact_form").reset();
-    this.setState({ info_type: "link", name: undefined, info: undefined });
-    const { history } = this.props;
-    if (history) history.push("/dashboard");
   };
 
   render() {
