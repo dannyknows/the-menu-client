@@ -2,6 +2,7 @@ import React from "react";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import Banner from "../shared/Banner";
 import EditableField from "./EditableField";
+import { SketchPicker } from 'react-color';
 
 class Item extends React.Component {
   static contextType = RestaurantsContext;
