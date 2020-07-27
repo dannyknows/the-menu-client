@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "" };
@@ -42,7 +43,22 @@ class Login extends React.Component {
   render() {
     const { email, password, errMessage } = this.state;
     return (
-      <>
+      <div className='login-home'>
+        <header>
+        {this.context.currentUser || localStorage.getItem("auth") ? (
+          <>
+            <Link className="button2" to="/dashboard">Dashboard</Link>
+            <button className="button2" id="logout" onClick={() => this.handleLogout()}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link className="button2" to="/login">Login</Link>
+            <Link className="button2" to="/sign-up">Sign Up</Link>
+          </>
+        )}
+        </header>
       {/* <div className="login-box">
         <h2>Login</h2>
         <form>
@@ -66,7 +82,6 @@ class Login extends React.Component {
       <span></span>
       Submit
     </a> */}
-
 
         <div className="login-box">
           <h2>Login</h2>
@@ -95,7 +110,8 @@ class Login extends React.Component {
             <input type="submit" value="Submit" />
           </form>
         </div>
-      </>
+
+        </div>
     );
   }
 }

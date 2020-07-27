@@ -1,0 +1,39 @@
+.home, .login-home{
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../assessts/splash_screen.jpg');
+  background-position: center;
+}
+
+header{
+  height: 5%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.content{
+  height: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .title{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 4em;
+    border: 5px solid black;
+    
+    h1{
+      text-align: center;
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+    p{
+      text-align: center;
+      font-size: large;
+      margin: 1em;
+    }
+  }
+}

@@ -9,11 +9,25 @@ function findIndex(array, id) {
 function dispatch(action, value) {
   switch (action) {
     case "populate":
-      this.setState({ restaurants: value.restaurants, auth: true, currentUser: value.user });
+      this.setState({
+        restaurants: value.restaurants,
+        auth: true,
+        currentUser: value.user,
+      });
       break;
     case "update user":
-      console.log(value)
-      this.setState({currentUser: {id: value.id, email: value.email, full_name: value.full_name}});
+      this.setState({
+        currentUser: {
+          id: value.id,
+          email: value.email,
+          full_name: value.full_name,
+        },
+      });
+      break;
+    case "add restaurant":
+      this.setState((state) => {
+        return { restaurants: [...state.restaurants, value] };
+      });
       break;
     case "delete restaurant":
       this.setState((state) => {

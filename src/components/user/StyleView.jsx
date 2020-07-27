@@ -12,8 +12,6 @@ class StyleView extends React.Component {
   }
 
   updateStyles = (colourState) =>{
-    console.log(this.context.restaurants)
-    console.log(colourState)
     this.setState(colourState);
   }
 

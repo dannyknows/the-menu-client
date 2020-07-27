@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 // components
 import OpeningHours from "../user/OpeningHours";
-import ContactForm from "../user/ContactForm";
+import ContactInfo from "../user/ContactInfo";
+import {RestaurantsContext} from "../../context/restaurants-context";
 
 const ColorBlock = styled.input`
   height: 50px;
@@ -15,17 +16,17 @@ const ColorBlock = styled.input`
 `;
 
 class NewRestaurant extends React.Component {
+  static contextType = RestaurantsContext;
+
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  state = { name: "", headerColour: "", fontColour: "", foregroundColour: "", backgroundColour: "" };
+  state = { name: "", headerColour: "", fontColour: "", foregroundColour: "", backgroundColour: "", restaurant: { opening_hours: {opening_hours:[]} }};
 
   handleChange(event) {
-    console.log(event.target.id);
-    console.log(this.state);
     switch (event.target.id) {
       case "headerColour":
         return this.setState({ headerColour: event.target.value });
@@ -36,33 +37,59 @@ class NewRestaurant extends React.Component {
       case "backgroundColour":
         return this.setState({ backgroundColour: event.target.value });
       case "resName":
-        return this.setState({ name: event.target.value });
+        return this.setState({ restaurant: {name: event.target.value }});
       default:
         console.log("missed");
     }
   }
 
+  setOpeningHours = (data) => {
+    this.setState({restaurant: {opening_hours: data}});
+  }
+
   handleSubmit = async (event) => {
+    event.preventDefault()
     const styles = {
       headerColour: this.state.headerColour,
       fontColour: this.state.fontColour,
       foregroundColour: this.state.foregroundColour,
       backgroundColour: this.state.backgroundColour,
     };
-
     const body = {
-      style_data: JSON.stringy(styles),
+      restaurant:{
+        name: this.state.restaurant.name,
+        opening_hours: JSON.stringify(this.state.opening_hours)
+      }
     };
+    
+    try{
+      const response = await fetch(`http://localhost:3000/restaurants`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(body),
+      });
+      if(response.status >= 400){
+        const test = await response.json();
+        throw new Error(response);
+      }else{
+        const newRestaurantInfo = await response.json();
 
-    fetch(`http://localhost:3000/styles/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify(body),
-    });
-    event.preventDefault();
+        const contact_response = await fetch(`http://localhost:3000/restaurants`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(body),
+        });
+        // this.context.dispatch("add restaurant",newRestaurantInfo)
+      }
+    }catch(err){
+      console.log(err);
+    }
   };
 
   render() {
@@ -74,13 +101,13 @@ class NewRestaurant extends React.Component {
             type="text"
             id="resName"
             placeholder="Name"
-            value={this.state.resName}
+            value={this.state.restaurant.name}
             onChange={this.handleChange}
           />
           <p>Opening Hours:</p>
-          {/* <OpeningHours /> */}
+          <OpeningHours setOpeningHours={this.setOpeningHours} opening_hours={{opening_hours: []}}/>
           <p>Contact Details:</p>
-          {/* <ContactForm /> */}
+          <ContactInfo restaurant={{ contact_infos: [] }}/>
           <div>
             <label htmlFor="Colour">
               <p>Colour Scheme:</p>

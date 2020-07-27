@@ -31,13 +31,11 @@ class ColourPicker extends React.Component {
   
   handleClose = () => {
     const key = this.props.elementName
-    console.log(this.props.elementName)
     this.props.updateStyles({[key]: this.convertRGB(this.state.color)})
     this.setState({ displayColorPicker: false })
   };
 
   handleChange = (color) => {
-    console.log(color.rgb)
     this.setState({ color: color.rgb })
   }
 
