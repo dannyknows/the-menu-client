@@ -10,6 +10,7 @@ class Menu extends React.Component {
     edit_menu: "",
     new_menu_title: null,
     seen: false,
+    item: null,
   };
 
   onInputChange = (event) => {
@@ -92,6 +93,7 @@ class Menu extends React.Component {
   togglePop = () => {
     this.setState({
       seen: !this.state.seen,
+      item: null
     });
   };
   updateState = () => {
@@ -101,6 +103,13 @@ class Menu extends React.Component {
       ),
     });
   };
+  editItem = (item) => {
+    this.setState({
+      item: item,
+      seen: true
+    })
+  }
+
   render() {
     return (
       <div>
@@ -114,6 +123,7 @@ class Menu extends React.Component {
                   menu_index={index}
                   toggle={this.togglePop}
                   updateState={this.updateState}
+                  item={this.state.item}
                 />
               ) : null}
               <EditableField
@@ -135,6 +145,7 @@ class Menu extends React.Component {
                 <div key={index}>
                   <p>{item.name}</p>
                   <p>{item.description}</p>
+                  <button onClick={() => this.editItem(item)}>Edit</button>
                 </div>
                 );
               })}

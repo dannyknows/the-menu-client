@@ -72,11 +72,20 @@ function dispatch(action, value) {
       break;
     case "new item":
       this.setState((state) => {
-        console.log(value);
         const res_index = findIndex(state.restaurants, value.current_menu.restaurant_id);
         state.restaurants[res_index].menus[value.menu_index].items.push(value.item);
         return { restaurants: [...state.restaurants] };
       });
+      break;
+    case "edit item":
+      console.log(value);
+      this.setState((state) => {
+        const res_index = findIndex(state.restaurants,value.restaurant_id);
+        const menu_index = findIndex(state.restaurants[res_index].menus,value.item.menu_id)
+        const item_index = findIndex(state.restaurants[res_index].menus[menu_index].items,value.item.id)
+        state.restaurants[res_index].menus[menu_index].items[item_index] = value.item
+        return { restaurants: [...state.restaurants] };
+      })
       break;
     case "new contact":
       this.setState((state) => {

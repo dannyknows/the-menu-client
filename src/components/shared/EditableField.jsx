@@ -28,7 +28,7 @@ class EditableField extends React.Component {
   getInputFormat = (format) => {
     switch (format){
       case "textarea":
-        return (<textarea id="itemTitle" name="" cols="30" rows="10" onKeyPress={this.keyPressed} onChange={this.onInputChange} onBlur={this.toggleField}>{this.state.itemTitle}</textarea>)
+        return (<textarea id="itemTitle" name="itemTitle" cols="30" rows="10" onKeyPress={this.keyPressed} onChange={this.onInputChange} onBlur={this.toggleField} value={this.state.itemTitle}></textarea>)
       break;
       default:
         return( <input
