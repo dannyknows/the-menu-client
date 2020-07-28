@@ -110,11 +110,29 @@ class Menu extends React.Component {
     })
   }
 
+  deleteItem = async (item,item_index,menu_index) => {
+    await fetch(
+      `http://localhost:3000/items/${item.id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    this.context.dispatch("remove item", {
+      restaurant_id: this.state.restaurant.id,
+      item: item,
+      item_index: item_index
+    });
+    this.state.restaurant.menus[menu_index].items.splice(item_index, 1);
+    this.setState({ restaurant: { ...this.state.restaurant } });
+  }
+
   render() {
     return (
       <div>
         {this.state.restaurant.menus.map((menu, index) => {
-          console.log(menu);
           return (
             <div key={index} className="menu">
               {this.state.seen ? (
@@ -139,13 +157,14 @@ class Menu extends React.Component {
               >
                 Delete
               </button>
-              {menu.items.map((item, index) => {
+              {menu.items.map((item,item_index) => {
                 console.log(item);
                 return (
-                <div key={index}>
+                <div key={item_index}>
                   <p>{item.name}</p>
                   <p>{item.description}</p>
                   <button onClick={() => this.editItem(item)}>Edit</button>
+                  <button onClick={() => this.deleteItem(item,item_index,index)}>Delete</button>
                 </div>
                 );
               })}

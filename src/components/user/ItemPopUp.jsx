@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import Item from "./Item";
 import EditableField from "../shared/EditableField";
+import Ingredients from "./Ingredients";
+import Sizes from "./Sizes";
 
 export default class ItemPopUp extends Component {
   static contextType = RestaurantsContext;
@@ -129,6 +131,8 @@ export default class ItemPopUp extends Component {
               updateField={this.updateItemDesc}
               id={this.state.item.id}
               />
+              <Ingredients item={this.props.item} menu={this.state.menu}/>
+              <Sizes item={this.props.item} menu={this.state.menu} />
             </div>
           ) : (
           <div>

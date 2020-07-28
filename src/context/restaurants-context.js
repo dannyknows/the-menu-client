@@ -72,18 +72,135 @@ function dispatch(action, value) {
       break;
     case "new item":
       this.setState((state) => {
-        const res_index = findIndex(state.restaurants, value.current_menu.restaurant_id);
-        state.restaurants[res_index].menus[value.menu_index].items.push(value.item);
+        const res_index = findIndex(
+          state.restaurants,
+          value.current_menu.restaurant_id
+        );
+        state.restaurants[res_index].menus[value.menu_index].items.push(
+          value.item
+        );
         return { restaurants: [...state.restaurants] };
       });
       break;
     case "edit item":
       console.log(value);
       this.setState((state) => {
-        const res_index = findIndex(state.restaurants,value.restaurant_id);
-        const menu_index = findIndex(state.restaurants[res_index].menus,value.item.menu_id)
-        const item_index = findIndex(state.restaurants[res_index].menus[menu_index].items,value.item.id)
-        state.restaurants[res_index].menus[menu_index].items[item_index] = value.item
+        const res_index = findIndex(state.restaurants, value.restaurant_id);
+        const menu_index = findIndex(
+          state.restaurants[res_index].menus,
+          value.item.menu_id
+        );
+        const item_index = findIndex(
+          state.restaurants[res_index].menus[menu_index].items,
+          value.item.id
+        );
+        state.restaurants[res_index].menus[menu_index].items[item_index] =
+          value.item;
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    case "delete item":
+      this.setState((state) => {
+        const res_index = findIndex(state.restaurants, value.restaurant_id);
+        const menu_index = findIndex(
+          state.restaurants[res_index].menus,
+          value.menu_id
+        );
+        state.restaurants[res_index].menus[menu_index].items.splice(
+          value.item_index,
+          1
+        );
+        console.log(state.restaurants);
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    case "new ingredient":
+      this.setState((state) => {
+        const res_index = findIndex(
+          state.restaurants,
+          value.menu.restaurant_id
+        );
+        const menu_index = findIndex(
+          state.restaurants[res_index].menus,
+          value.menu.id
+        );
+        const item_index = findIndex(
+          state.restaurants[res_index].menus[menu_index].items,
+          value.item.id
+        );
+        state.restaurants[res_index].menus[menu_index].items[
+          item_index
+        ].ingredients.push(value.ingredient);
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    case "edit ingredient":
+      this.setState((state) => {
+        const res_index = findIndex(
+          state.restaurants,
+          value.menu.restaurant_id
+        );
+        const menu_index = findIndex(
+          state.restaurants[res_index].menus,
+          value.menu.id
+        );
+        const item_index = findIndex(
+          state.restaurants[res_index].menus[menu_index].items,
+          value.item.id
+        );
+        const ingredient_index = findIndex(
+          state.restaurants[res_index].menus[menu_index].items[item_index]
+            .ingredients,
+          value.ingredient_id
+        );
+        state.restaurants[res_index].menus[menu_index].items[
+          item_index
+        ].ingredients[ingredient_index].name = value.new_name;
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    case "remove ingredient":
+      this.setState((state) => {
+        const res_index = findIndex(
+          state.restaurants,
+          value.menu.restaurant_id
+        );
+        const menu_index = findIndex(
+          state.restaurants[res_index].menus,
+          value.menu.id
+        );
+        const item_index = findIndex(
+          state.restaurants[res_index].menus[menu_index].items,
+          value.item.id
+        );
+        const ingredient_index = findIndex(
+          state.restaurants[res_index].menus[menu_index].items[item_index]
+            .ingredients,
+          value.ingredient_id
+        );
+        state.restaurants[res_index].menus[menu_index].items[
+          item_index
+        ].ingredients.splice(value.ingredient_index,1)
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    case "new size":
+      this.setState((state) => {
+        const res_index = findIndex(
+          state.restaurants,
+          value.menu.restaurant_id
+        );
+        const menu_index = findIndex(
+          state.restaurants[res_index].menus,
+          value.menu.id
+        );
+        const item_index = findIndex(
+          state.restaurants[res_index].menus[menu_index].items,
+          value.item.id
+        );
+        state.restaurants[res_index].menus[menu_index].items[
+          item_index
+        ].sizes.push(value.size);
         return { restaurants: [...state.restaurants] };
       })
       break;
