@@ -5,14 +5,15 @@ import Table from "../shared/Table";
 
 class ContactInfo extends React.Component {
   static contextType = RestaurantsContext;
-  state ={
+  state = {
     contact_id: "",
-      name: "",
-      info: "",
-      info_type: "",
-      restaurant_id: "",
-      edit_contact_index: "",
-  }
+    name: "",
+    info: "",
+    info_type: "",
+    restaurant_id: "",
+    edit_contact_index: "",
+    restaurant: this.props.restaurant,
+  };
 
   onInputChange = (event) => {
     const key = event.target.id;
@@ -32,10 +33,17 @@ class ContactInfo extends React.Component {
     });
   };
 
+  update = () => {
+    const res_index = this.context.restaurants.findIndex((item) => {
+      return item.id === this.state.restaurant.id;
+    });
+    this.setState({restaurant: this.context.restaurants[res_index]});
+  };
+
   editContactFormSubmit = async (event) => {
     event.preventDefault();
     const { name, info_type, info } = this.state;
-    if(this.props.restaurant.id){
+    if (this.props.restaurant.id) {
       await fetch(
         `http://localhost:3000/restaurants/${this.state.restaurant_id}/contact_infos/${this.state.contact_id}`,
         {
@@ -56,8 +64,23 @@ class ContactInfo extends React.Component {
     }
   };
 
+  deleteContact = async (rest_id, cont_id) => {
+    await fetch(
+      `http://localhost:3000/restaurants/${rest_id}/contact_infos/${cont_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    this.context.dispatch("remove contact", {
+      restaurant_id: rest_id,
+      contact_id: cont_id,
+    });
+  };
+
   render() {
-    console.log("test");
     return (
       <Table>
         <ul>
@@ -66,7 +89,7 @@ class ContactInfo extends React.Component {
           <li>Information</li>
           <li>Actions</li>
         </ul>
-        {this.props.restaurant.contact_infos.map((contact_info, index) => {
+        {this.state.restaurant.contact_infos.map((contact_info, index) => {
           return index === this.state.edit_contact_index ? (
             <div key={index} className="contact_info">
               <form
@@ -142,6 +165,7 @@ class ContactInfo extends React.Component {
           res_id={this.props.restaurant.id}
           res_index={this.props.index}
           getRestaurants={this.props.getRestaurants}
+          update={this.update}
         />
       </Table>
     );

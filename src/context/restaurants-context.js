@@ -39,6 +39,45 @@ function dispatch(action, value) {
         };
       });
       break;
+    case "new menu":
+      this.setState((state) => {
+        const res_index = findIndex(state.restaurants, value.restaurant_id);
+        state.restaurants[res_index].menus.push(value);
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    case "update menu":
+      this.setState((state) => {
+        const res_index = findIndex(state.restaurants, value.restaurant_id);
+        const menu_index = findIndex(
+          state.restaurants[res_index].menus,
+          value.menu_id
+        );
+        state.restaurants[res_index].menus[menu_index].title =
+          value.updated_values.title;
+        state.restaurants[res_index].menus[menu_index].updated_at = new Date();
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    case "remove menu":
+      this.setState((state) => {
+        const res_index = findIndex(state.restaurants, value.restaurant_id);
+        const menu_index = findIndex(
+          state.restaurants[res_index].menus,
+          value.menu_id
+        );
+        state.restaurants[res_index].menus.splice(menu_index, 1);
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    case "new item":
+      this.setState((state) => {
+        console.log(value);
+        const res_index = findIndex(state.restaurants, value.current_menu.restaurant_id);
+        state.restaurants[res_index].menus[value.menu_index].items.push(value.item);
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
     case "new contact":
       this.setState((state) => {
         const res_index = findIndex(state.restaurants, value.restaurant_id);

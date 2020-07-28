@@ -1,7 +1,7 @@
 import React from "react";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import Banner from "../shared/Banner";
-import EditableField from "./EditableField";
+import EditableField from "../shared/EditableField";
 import { SketchPicker } from 'react-color';
 
 class Item extends React.Component {
@@ -36,7 +36,6 @@ class Item extends React.Component {
   render() {
     return (
       <div>
-        <Banner>Item</Banner>
         {/* <title>Item name</title>;
         <h3>Description</h3>
         <p>description placeholder</p>

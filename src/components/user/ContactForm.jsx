@@ -18,7 +18,7 @@ class ContactForm extends React.Component {
 
   onFormSubmit = async (event) => {
     event.preventDefault();
-    if(this.props.restaurant){
+    if(this.props.res_id){
       const body = {
         contact_info: {
           name: this.state.name,
@@ -39,9 +39,10 @@ class ContactForm extends React.Component {
       );
       const newContactInfo = await response.json();
       this.context.dispatch("new contact", newContactInfo);
+      this.props.update()
       this.setState({ info_type: "link", name: undefined, info: undefined });
-      const { history } = this.props;
-      if (history) history.push("/dashboard");
+      // const { history } = this.props;
+      // if (history) history.push("/dashboard");
     }else{
       
     }

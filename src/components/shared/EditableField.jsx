@@ -2,7 +2,7 @@ import React from "react";
 
 class EditableField extends React.Component {
   state = {
-    itemTitle: this.props.itemTitle,
+    itemTitle: this.props.input,
     itemEdit: false
   }
   toggleField = () => {
@@ -21,6 +21,7 @@ class EditableField extends React.Component {
   keyPressed = (event) => {
     if (event.key === "Enter") {
       this.toggleField()
+      this.props.updateField(this.state.itemTitle, this.props.id)
     }
   }
 

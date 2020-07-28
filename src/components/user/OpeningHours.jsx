@@ -58,7 +58,6 @@ class OpeningHours extends React.Component {
   }
 
   render() {
-    console.log(this.state.opening_hours)
     return (
       <div>
         <Table>
