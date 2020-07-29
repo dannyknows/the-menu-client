@@ -7,8 +7,8 @@ class Sizes extends React.Component {
     item: this.props.item,
     menu: this.props.menu,
     edit_size_index: "",
-    name: "",
-    price: null,
+    edit_name: "",
+    edit_price: null,
     new_size_name: "",
     new_size_price: 0
   };
@@ -47,7 +47,70 @@ class Sizes extends React.Component {
       item: this.state.item
     });
   };
-  updateSize = async (event) => {};
+  editSize = (size_index,size) => {
+    this.setState({
+      edit_size_index: size_index,
+      edit_name: size.name,
+      edit_price: size.price
+    });
+  }
+
+
+  updateSizeSubmit = async (event, size, size_index) => {
+    event.preventDefault();
+    const body = {
+      size: {
+        name: this.state.edit_name,
+        price: this.state.edit_price
+      },
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/items/${size.item_id}/sizes/${size.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      const newSize = size;
+      newSize.name = this.state.edit_name;
+      newSize.price = this.state.edit_price;
+      console.log(newSize);
+      this.setState({ edit_size_index: ""});
+      this.context.dispatch("edit size", {
+        menu: this.state.menu,
+        item: this.state.item,
+        size: newSize,
+        size_index: size_index
+      });
+    } catch (error) {
+      console.log("ERROR");
+      console.log(error);
+    }
+  };
+
+  deleteSize = async (size, size_index) => {
+    await fetch(
+      `http://localhost:3000/items/${size.item_id}/sizes/${size.id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    this.context.dispatch("remove size", {
+      item: this.state.item,
+      menu: this.state.menu,
+      size_index: size_index
+    });
+    // this.state.restaurant.menus.splice(index, 1);
+  }
 
   render() {
     return (
@@ -55,23 +118,25 @@ class Sizes extends React.Component {
         {this.state.item.sizes.map((size, size_index) => {
           return size_index === this.state.edit_size_index ? (
             <div key={size_index} className="item_sizes">
-              <form id="edit_size_form" onSubmit={this.editContactFormSubmit}>
+              <form id="edit_size_form" onSubmit={(event) => {
+                this.updateSizeSubmit(event, size, size_index);
+              }}>
                 <input
                   type="text"
-                  name="name"
-                  id="name"
+                  name="edit_name"
+                  id="edit_name"
                   placeholder="Name"
                   onChange={this.onInputChange}
-                  value={this.state.name}
+                  value={this.state.edit_name}
                 />
                 <input
                   type="number"
-                  name="price"
-                  id="price"
+                  name="edit_price"
+                  id="edit_price"
                   placeholder="Price"
                   step="1"
                   onChange={this.onInputChange}
-                  value={this.state.name}
+                  value={this.state.edit_price}
                 />
                 <input type="submit" value="Save" />
               </form>
@@ -82,10 +147,10 @@ class Sizes extends React.Component {
               <p>
                 {size.name} {size.price}
               </p>
-              <button onClick={() => this.editContact(size_index, size)}>
+              <button onClick={() => this.editSize(size_index, size)}>
                 Edit
               </button>
-              <button onClick={() => this.deleteContact()}>Delete</button>
+              <button onClick={() => this.deleteSize(size, size_index)}>Delete</button>
             </div>
           );
         })}
@@ -107,7 +172,7 @@ class Sizes extends React.Component {
             onChange={this.onInputChange}
             value={this.state.new_price}
           />
-          <input type="submit" value="Save" />
+          <input type="submit" value="Add Size" />
         </form>
       </div>
     );

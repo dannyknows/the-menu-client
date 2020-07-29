@@ -88,22 +88,26 @@ export default class ItemPopUp extends Component {
         description: new_desc,
       },
     };
-    await fetch(
-      `http://localhost:3000/items/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(body),
-      }
-    );
-    this.state.item.description = new_desc;
-    this.context.dispatch("edit item", {
-      restaurant_id: this.state.menu.restaurant_id,
-      item:this.state.item
-    });
+    try{
+      await fetch(
+        `${process.env.REACT_BACKEND_URL}/items/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      this.state.item.description = new_desc;
+      this.context.dispatch("edit item", {
+        restaurant_id: this.state.menu.restaurant_id,
+        item:this.state.item
+      });
+    }catch (err){
+      console.log(err);
+    }
   };
 
   handleClick = () => {
@@ -132,7 +136,7 @@ export default class ItemPopUp extends Component {
               id={this.state.item.id}
               />
               <Ingredients item={this.props.item} menu={this.state.menu}/>
-              <Sizes item={this.props.item} menu={this.state.menu} />
+              <Sizes item={this.state.item} menu={this.state.menu} />
             </div>
           ) : (
           <div>

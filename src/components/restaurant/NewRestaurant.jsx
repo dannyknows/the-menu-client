@@ -74,8 +74,10 @@ class NewRestaurant extends React.Component {
         opening_hours: JSON.stringify(this.state.opening_hours),
       },
     };
+    
     try {
-      const response = await fetch(`http://localhost:3000/restaurants`, {
+      console.log(` hello ${process.env.REACT_APP_BACKEND_URL}`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,8 +104,9 @@ class NewRestaurant extends React.Component {
       console.log(err);
     }
   };
-
+  
   render() {
+    console.log(` hello ${process.env.REACT_APP_BACKEND_URL}`);
     return this.state.status === "restaurant" ? (
       <>
         <form onSubmit={this.handleSubmit}>
