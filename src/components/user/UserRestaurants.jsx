@@ -11,12 +11,12 @@ class UserRestaurants extends React.Component {
     super(props);
     this.state = {
       width: window.innerWidth,
-      contact_id: "",
+      contactId: "",
       name: "",
       info: "",
-      info_type: "",
-      restaurant_id: "",
-      edit_contact_index: "",
+      infoType: "",
+      restaurantId: "",
+      editContactIndex: "",
       restaurants: ""
     };
   }
@@ -56,7 +56,7 @@ class UserRestaurants extends React.Component {
             <h3>{restaurant.name} </h3>
             <OpeningHours
               opening_hours={JSON.parse(restaurant.opening_hours)}
-              restaurant_id={restaurant.id}
+              restaurantId={restaurant.id}
             />
             <ContactInfo restaurant={restaurant} index={index} />
             <Menu restaurant={restaurant} new_status={false} />
@@ -76,7 +76,7 @@ class UserRestaurants extends React.Component {
             <h4>{restaurant.subdomain}</h4>
             <OpeningHours
               opening_hours={JSON.parse(restaurant.opening_hours)}
-              restaurant_id={restaurant.id}
+              restaurantId={restaurant.id}
             />
             <ContactInfo restaurant={restaurant} index={index} />
             <Menu restaurant={restaurant} />
