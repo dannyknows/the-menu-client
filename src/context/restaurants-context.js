@@ -177,11 +177,6 @@ function dispatch(action, value) {
           state.restaurants[res_index].menus[menu_index].items,
           value.item.id
         );
-        const ingredient_index = findIndex(
-          state.restaurants[res_index].menus[menu_index].items[item_index]
-            .ingredients,
-          value.ingredient_id
-        );
         state.restaurants[res_index].menus[menu_index].items[
           item_index
         ].ingredients.splice(value.ingredient_index, 1);
@@ -241,11 +236,6 @@ function dispatch(action, value) {
         const item_index = findIndex(
           state.restaurants[res_index].menus[menu_index].items,
           value.item.id
-        );
-        const ingredient_index = findIndex(
-          state.restaurants[res_index].menus[menu_index].items[item_index]
-            .ingredients,
-          value.ingredient_id
         );
         state.restaurants[res_index].menus[menu_index].items[
           item_index

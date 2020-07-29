@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { RestaurantsContext } from "../../context/restaurants-context";
-import Item from "./Item";
 import EditableField from "../shared/EditableField";
 import Ingredients from "./Ingredients";
 import Sizes from "./Sizes";
@@ -113,7 +112,6 @@ export default class ItemPopUp extends Component {
     this.props.toggle();
   };
   render() {
-    const { email, password, full_name } = this.state;
     return (
       <div className="modal">
         <div className="modal_content">

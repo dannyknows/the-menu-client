@@ -11,7 +11,6 @@ import SignUp from "./user/SignUp";
 import ProtectedRoute from "./user/protectedRoute";
 import { RestaurantsContext, dispatch } from '../context/restaurants-context'
 import Restaurant from "./restaurant/restaurant";
-import NewRestaurant from "./restaurant/NewRestaurant";
 
 
 class App extends React.Component {
