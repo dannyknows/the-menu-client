@@ -27,7 +27,7 @@ class ContactForm extends React.Component {
         },
       };
       const response = await fetch(
-        `http://localhost:3000/restaurants/${this.state.res_id}/contact_infos`,
+        `${process.env.REACT_APP_BACKEND_URL}/restaurants/${this.state.res_id}/contact_infos`,
         {
           method: "POST",
           headers: {

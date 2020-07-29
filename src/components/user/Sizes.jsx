@@ -29,7 +29,7 @@ class Sizes extends React.Component {
       },
     };
     const response = await fetch(
-      `http://localhost:3000/items/${this.state.item.id}/sizes`,
+      `${process.env.REACT_APP_BACKEND_URL}/items/${this.state.item.id}/sizes`,
       {
         method: "POST",
         headers: {
@@ -67,7 +67,7 @@ class Sizes extends React.Component {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/items/${size.item_id}/sizes/${size.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/items/${size.item_id}/sizes/${size.id}`,
         {
           method: "PUT",
           headers: {
@@ -80,7 +80,6 @@ class Sizes extends React.Component {
       const newSize = size;
       newSize.name = this.state.edit_name;
       newSize.price = this.state.edit_price;
-      console.log(newSize);
       this.setState({ edit_size_index: ""});
       this.context.dispatch("edit size", {
         menu: this.state.menu,
@@ -96,7 +95,7 @@ class Sizes extends React.Component {
 
   deleteSize = async (size, size_index) => {
     await fetch(
-      `http://localhost:3000/items/${size.item_id}/sizes/${size.id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/items/${size.item_id}/sizes/${size.id}`,
       {
         method: "DELETE",
         headers: {
@@ -143,7 +142,6 @@ class Sizes extends React.Component {
             </div>
           ) : (
             <div key={size_index} className="contact_info">
-            {console.log(size)}
               <p>
                 {size.name} {size.price}
               </p>

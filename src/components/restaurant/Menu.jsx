@@ -28,7 +28,7 @@ class Menu extends React.Component {
       },
     };
     const response = await fetch(
-      `http://localhost:3000/restaurants/${this.state.restaurant.id}/menus`,
+      `${process.env.REACT_APP_BACKEND_URL}/restaurants/${this.state.restaurant.id}/menus`,
       {
         method: "POST",
         headers: {
@@ -54,7 +54,7 @@ class Menu extends React.Component {
       },
     };
     await fetch(
-      `http://localhost:3000/restaurants/${this.state.restaurant.id}/menus/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/restaurants/${this.state.restaurant.id}/menus/${id}`,
       {
         method: "PUT",
         headers: {
@@ -74,7 +74,7 @@ class Menu extends React.Component {
 
   deleteMenu = async (rest_id, menu_id, index) => {
     await fetch(
-      `http://localhost:3000/restaurants/${rest_id}/menus/${menu_id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/restaurants/${rest_id}/menus/${menu_id}`,
       {
         method: "DELETE",
         headers: {
@@ -112,7 +112,7 @@ class Menu extends React.Component {
 
   deleteItem = async (item,item_index,menu_index) => {
     await fetch(
-      `http://localhost:3000/items/${item.id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/items/${item.id}`,
       {
         method: "DELETE",
         headers: {
@@ -158,7 +158,6 @@ class Menu extends React.Component {
                 Delete
               </button>
               {menu.items.map((item,item_index) => {
-                console.log(item);
                 return (
                 <div key={item_index}>
                   <p>{item.name}</p>
@@ -171,8 +170,6 @@ class Menu extends React.Component {
               <button
                 onClick={() => {
                   this.togglePop();
-                  // this.props.itemPopUp();
-                  // this.props.updateState(menu,index);
                 }}
               >
                 Add Item

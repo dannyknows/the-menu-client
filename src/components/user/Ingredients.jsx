@@ -24,7 +24,7 @@ class Ingredients extends React.Component {
       },
     };
     await fetch(
-      `http://localhost:3000/items/${this.state.item.id}/ingredients/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/items/${this.state.item.id}/ingredients/${id}`,
       {
         method: "PUT",
         headers: {
@@ -49,7 +49,7 @@ class Ingredients extends React.Component {
       },
     };
     const response = await fetch(
-      `http://localhost:3000/items/${this.state.item.id}/ingredients`,
+      `${process.env.REACT_APP_BACKEND_URL}/items/${this.state.item.id}/ingredients`,
       {
         method: "POST",
         headers: {
@@ -71,7 +71,7 @@ class Ingredients extends React.Component {
 
   deleteIngredient = async (ingredient, ingredient_index) => {
     await fetch(
-      `http://localhost:3000/items/${ingredient.item_id}/ingredients/${ingredient.id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/items/${ingredient.item_id}/ingredients/${ingredient.id}`,
       {
         method: "DELETE",
         headers: {

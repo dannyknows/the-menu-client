@@ -45,7 +45,7 @@ class ContactInfo extends React.Component {
     const { name, info_type, info } = this.state;
     if (this.props.restaurant.id) {
       await fetch(
-        `http://localhost:3000/restaurants/${this.state.restaurant_id}/contact_infos/${this.state.contact_id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/${this.state.restaurant_id}/contact_infos/${this.state.contact_id}`,
         {
           method: "PUT",
           headers: {
@@ -66,7 +66,7 @@ class ContactInfo extends React.Component {
 
   deleteContact = async (rest_id, cont_id) => {
     await fetch(
-      `http://localhost:3000/restaurants/${rest_id}/contact_infos/${cont_id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/restaurants/${rest_id}/contact_infos/${cont_id}`,
       {
         method: "DELETE",
         headers: {

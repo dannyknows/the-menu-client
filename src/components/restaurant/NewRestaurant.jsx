@@ -76,7 +76,6 @@ class NewRestaurant extends React.Component {
     };
     
     try {
-      console.log(` hello ${process.env.REACT_APP_BACKEND_URL}`);
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants`, {
         method: "POST",
         headers: {
@@ -106,7 +105,6 @@ class NewRestaurant extends React.Component {
   };
   
   render() {
-    console.log(` hello ${process.env.REACT_APP_BACKEND_URL}`);
     return this.state.status === "restaurant" ? (
       <>
         <form onSubmit={this.handleSubmit}>
@@ -123,13 +121,6 @@ class NewRestaurant extends React.Component {
       </>
     ) : (
       <div>
-        {this.state.seen ? (
-          <ItemPopUp
-            current_menu={this.state.current_menu}
-            toggle={this.togglePop}
-            updateRestaurant={this.updateRestaurant}
-          />
-        ) : null}
         <p>Restaurant Name:</p>
         <h1>{this.state.restaurant_name}</h1>
         <hr />
@@ -143,8 +134,6 @@ class NewRestaurant extends React.Component {
         <ContactInfo restaurant={this.state.restaurant} />
         <Menu
           restaurant={this.state.restaurant}
-          itemPopUp={this.togglePop}
-          updateState={this.updateState}
         />
         <div>
           <label htmlFor="Colour">

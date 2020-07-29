@@ -32,9 +32,8 @@ export default class ItemPopUp extends Component {
       },
       menu_id: this.props.current_menu.id,
     };
-    console.log(body.item.description)
     try {
-      const response = await fetch(`http://localhost:3000/items`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +45,6 @@ export default class ItemPopUp extends Component {
         throw new Error("incorrect credentials");
       } else {
         const newItem = await response.json();
-        console.log(newItem);
         this.context.dispatch("new item", { current_menu: this.props.current_menu, item: {...newItem, sizes: [], ingredients: []}, menu_index:this.props.menu_index});
         this.setState({restaurants: this.context.restaurants, item: newItem});
         document.getElementById("item_form").reset();
@@ -65,7 +63,7 @@ export default class ItemPopUp extends Component {
       },
     };
     await fetch(
-      `http://localhost:3000/items/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/items/${id}`,
       {
         method: "PUT",
         headers: {
@@ -90,7 +88,7 @@ export default class ItemPopUp extends Component {
     };
     try{
       await fetch(
-        `${process.env.REACT_BACKEND_URL}/items/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/items/${id}`,
         {
           method: "PUT",
           headers: {

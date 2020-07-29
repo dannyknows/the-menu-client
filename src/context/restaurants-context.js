@@ -83,7 +83,6 @@ function dispatch(action, value) {
       });
       break;
     case "edit item":
-      console.log(value);
       this.setState((state) => {
         const res_index = findIndex(state.restaurants, value.restaurant_id);
         const menu_index = findIndex(
@@ -110,7 +109,6 @@ function dispatch(action, value) {
           value.item_index,
           1
         );
-        console.log(state.restaurants);
         return { restaurants: [...state.restaurants] };
       });
       break;

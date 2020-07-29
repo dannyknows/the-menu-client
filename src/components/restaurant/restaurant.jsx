@@ -10,7 +10,7 @@ export default class Restaurant extends Component {
   
   async componentDidMount() {
     const { subdomain } = this.state;
-    const response = await fetch(`http://localhost:3000/getrestaurants/${subdomain}`);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getrestaurants/${subdomain}`);
     const json_response = await response.json();
     this.setState({ restaurant: json_response.restaurant });
   }
