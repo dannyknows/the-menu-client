@@ -6,7 +6,6 @@ import OpeningHours from "../user/OpeningHours";
 import ContactInfo from "../user/ContactInfo";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import Menu from "./Menu";
-import ItemPopUp from "../user/ItemPopUp";
 
 const ColorBlock = styled.input`
   height: 50px;
@@ -37,6 +36,7 @@ class NewRestaurant extends React.Component {
     status: "restaurant",
     seen: false,
     current_menu: "",
+    restaurant: ""
   };
 
   handleChange(event) {
@@ -95,6 +95,7 @@ class NewRestaurant extends React.Component {
           menus: [],
         });
         this.setState({
+          restaurant_index: (this.context.restaurants.length-1),
           restaurant: { ...newRestaurantInfo, contact_infos: [], menus: [] },
           status: "contact",
         });
@@ -133,7 +134,8 @@ class NewRestaurant extends React.Component {
         <p>Contact Details:</p>
         <ContactInfo restaurant={this.state.restaurant} />
         <Menu
-          restaurant={this.state.restaurant}
+          restaurant={this.context.restaurants[this.state.restaurant_index]}
+          new_status={false}
         />
         <div>
           <label htmlFor="Colour">
