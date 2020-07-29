@@ -13,7 +13,7 @@ class OpeningHours extends React.Component {
 
   updateHours = async (string_data) => {
     if(this.props.restaurant_id){
-      await fetch(`http://localhost:3000/restaurants/${this.props.restaurant_id}`,
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/${this.props.restaurant_id}`,
         {
           method: "PUT",
           headers: {
@@ -58,7 +58,6 @@ class OpeningHours extends React.Component {
   }
 
   render() {
-    console.log(this.state.opening_hours)
     return (
       <div>
         <Table>

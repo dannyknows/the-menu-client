@@ -24,7 +24,7 @@ class ProtectedRoute extends Component {
           loading: false})
         }
     try {
-      const response = await fetch("http://localhost:3000/restaurants", {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -34,7 +34,7 @@ class ProtectedRoute extends Component {
       } else {
         const { jwt, restaurants } = await response.json();
         try {
-          const response = await fetch("http://localhost:3000/status/user", {
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/status/user`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },

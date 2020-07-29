@@ -18,7 +18,7 @@ class ContactForm extends React.Component {
 
   onFormSubmit = async (event) => {
     event.preventDefault();
-    if(this.props.restaurant){
+    if(this.props.res_id){
       const body = {
         contact_info: {
           name: this.state.name,
@@ -27,7 +27,7 @@ class ContactForm extends React.Component {
         },
       };
       const response = await fetch(
-        `http://localhost:3000/restaurants/${this.state.res_id}/contact_infos`,
+        `${process.env.REACT_APP_BACKEND_URL}/restaurants/${this.state.res_id}/contact_infos`,
         {
           method: "POST",
           headers: {
@@ -39,9 +39,10 @@ class ContactForm extends React.Component {
       );
       const newContactInfo = await response.json();
       this.context.dispatch("new contact", newContactInfo);
+      this.props.update()
       this.setState({ info_type: "link", name: undefined, info: undefined });
-      const { history } = this.props;
-      if (history) history.push("/dashboard");
+      // const { history } = this.props;
+      // if (history) history.push("/dashboard");
     }else{
       
     }

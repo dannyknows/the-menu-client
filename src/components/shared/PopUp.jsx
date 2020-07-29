@@ -20,7 +20,7 @@ export default class PopUp extends Component {
     const { email, password, full_name } = this.state;
     try {
       const response = await fetch(
-        `http://localhost:3000/users/${this.context.currentUser.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/users/${this.context.currentUser.id}`,
         {
           method: "PUT",
           headers: {

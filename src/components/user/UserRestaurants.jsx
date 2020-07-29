@@ -3,6 +3,7 @@ import { RestaurantsContext } from "../../context/restaurants-context";
 import { Link } from "react-router-dom";
 import OpeningHours from "./OpeningHours";
 import ContactInfo from "./ContactInfo";
+import Menu from "../restaurant/Menu";
 
 class UserRestaurants extends React.Component {
   static contextType = RestaurantsContext;
@@ -20,13 +21,13 @@ class UserRestaurants extends React.Component {
   }
 
   deleteRestaurant = async (id) => {
-    await fetch(`http://localhost:3000/restaurants/${id}`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    this.context.dispatch("delete restaurant",id)
+    this.context.dispatch("delete restaurant", id);
   };
 
   componentWillMount() {
@@ -43,22 +44,6 @@ class UserRestaurants extends React.Component {
     this.setState({ width: window.innerWidth });
   };
 
-  deleteContact = async (rest_id, cont_id) => {
-    await fetch(
-      `http://localhost:3000/restaurants/${rest_id}/contact_infos/${cont_id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
-    this.context.dispatch("remove contact", {
-      restaurant_id: rest_id,
-      contact_id: cont_id,
-    });
-  };
-
   render() {
     const { width } = this.state;
     const isMobile = width <= 500;
@@ -68,8 +53,12 @@ class UserRestaurants extends React.Component {
         return (
           <div key={index} className="restaurant">
             <h3>{restaurant.name} </h3>
-            <OpeningHours opening_hours={JSON.parse(restaurant.opening_hours)} restaurant_id={restaurant.id}/>
-            <ContactInfo restaurant={restaurant} index={index}/>
+            <OpeningHours
+              opening_hours={JSON.parse(restaurant.opening_hours)}
+              restaurant_id={restaurant.id}
+            />
+            <ContactInfo restaurant={restaurant} index={index} />
+            <Menu restaurant={restaurant} />
             <div className="edit-delete-container">
               <button>Edit</button>
               <button onClick={() => this.deleteRestaurant(restaurant.id)}>
@@ -84,8 +73,12 @@ class UserRestaurants extends React.Component {
           <div key={index} className="restaurant">
             <h3>{restaurant.name} </h3>
             <h4>{restaurant.subdomain}</h4>
-            <OpeningHours opening_hours={JSON.parse(restaurant.opening_hours)} restaurant_id={restaurant.id}/>
-            <ContactInfo restaurant={restaurant} index={index}/>
+            <OpeningHours
+              opening_hours={JSON.parse(restaurant.opening_hours)}
+              restaurant_id={restaurant.id}
+            />
+            <ContactInfo restaurant={restaurant} index={index} />
+            <Menu restaurant={restaurant} />
             <div className="edit-delete-container">
               <Link to={`/restaurant/${restaurant.subdomain}`}> View </Link>
               <button>Edit</button>
