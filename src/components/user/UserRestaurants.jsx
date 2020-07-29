@@ -17,6 +17,7 @@ class UserRestaurants extends React.Component {
       info_type: "",
       restaurant_id: "",
       edit_contact_index: "",
+      restaurants: ""
     };
   }
 
@@ -58,7 +59,7 @@ class UserRestaurants extends React.Component {
               restaurant_id={restaurant.id}
             />
             <ContactInfo restaurant={restaurant} index={index} />
-            <Menu restaurant={restaurant} />
+            <Menu restaurant={restaurant} new_status={false} />
             <div className="edit-delete-container">
               <button>Edit</button>
               <button onClick={() => this.deleteRestaurant(restaurant.id)}>

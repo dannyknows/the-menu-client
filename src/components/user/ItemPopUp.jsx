@@ -44,12 +44,13 @@ export default class ItemPopUp extends Component {
       if (response.status >= 400) {
         throw new Error("incorrect credentials");
       } else {
-        const newItem = await response.json();
-        this.context.dispatch("new item", { current_menu: this.props.current_menu, item: {...newItem, sizes: [], ingredients: []}, menu_index:this.props.menu_index});
-        this.setState({restaurants: this.context.restaurants, item: newItem});
+        const newItemData = await response.json();
+        const new_item = {...newItemData, sizes: [], ingredients: []};
+        this.context.dispatch("new item", { current_menu: this.props.current_menu, item: new_item, menu_index:this.props.menu_index});
         document.getElementById("item_form").reset();
-        this.props.toggle();
-        this.props.updateState();
+        this.setState({restaurants: this.context.restaurants, item: new_item});
+        // this.props.toggle();
+        // this.props.updateState();
       }
     } catch (err) {
       console.error(err.message);
@@ -119,7 +120,7 @@ export default class ItemPopUp extends Component {
           <span className="close" onClick={this.handleClick}>
             &times;{" "}
           </span>
-          {this.props.item ? (
+          {this.state.item ? (
             <div>
               <EditableField 
               inputStyle="text"
@@ -133,7 +134,7 @@ export default class ItemPopUp extends Component {
               updateField={this.updateItemDesc}
               id={this.state.item.id}
               />
-              <Ingredients item={this.props.item} menu={this.state.menu}/>
+              <Ingredients item={this.state.item} menu={this.state.menu}/>
               <Sizes item={this.state.item} menu={this.state.menu} />
             </div>
           ) : (

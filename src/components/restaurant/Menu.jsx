@@ -6,7 +6,7 @@ import ItemPopUp from "../user/ItemPopUp";
 class Menu extends React.Component {
   static contextType = RestaurantsContext;
   state = {
-    restaurant: { ...this.props.restaurant, menus: [] },
+    restaurant: this.props.restaurant,
     edit_menu: "",
     new_menu_title: null,
     seen: false,
@@ -40,10 +40,13 @@ class Menu extends React.Component {
     );
     const newMenu = await response.json();
     this.context.dispatch("new menu", { ...newMenu, items: [] });
-    this.setState((state) => {
-      state.restaurant.menus.push({ ...newMenu, items: [] });
-      return { restaurant: { ...state.restaurant } };
-    });
+    console.log(this.state.restaurant)
+    if(this.props.new_status){
+      this.setState((state) => {
+        state.restaurant.menus.push({ ...newMenu, items: [] });
+        return { restaurant: { ...state.restaurant } };
+      });
+    }
     document.getElementById("menu_form").reset();
   };
 
@@ -90,12 +93,20 @@ class Menu extends React.Component {
     this.setState({ restaurant: { ...this.state.restaurant } });
   };
 
-  togglePop = () => {
+  togglePop = (menu) => {
     this.setState({
       seen: !this.state.seen,
-      item: null
+      current_menu: menu,
+      item: null,
     });
   };
+
+  resetPop = () => {
+    this.setState({
+      seen: false,
+    });
+  };
+
   updateState = () => {
     this.setState({
       restaurant: this.context.restaurants.find(
@@ -103,31 +114,29 @@ class Menu extends React.Component {
       ),
     });
   };
+
   editItem = (item) => {
     this.setState({
       item: item,
-      seen: true
-    })
-  }
+      seen: true,
+    });
+  };
 
-  deleteItem = async (item,item_index,menu_index) => {
-    await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/items/${item.id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+  deleteItem = async (item, item_index, menu_index) => {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/items/${item.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     this.context.dispatch("remove item", {
       restaurant_id: this.state.restaurant.id,
       item: item,
-      item_index: item_index
+      item_index: item_index,
     });
     this.state.restaurant.menus[menu_index].items.splice(item_index, 1);
     this.setState({ restaurant: { ...this.state.restaurant } });
-  }
+  };
 
   render() {
     return (
@@ -137,9 +146,9 @@ class Menu extends React.Component {
             <div key={index} className="menu">
               {this.state.seen ? (
                 <ItemPopUp
-                  current_menu={menu}
+                  current_menu={this.state.current_menu}
                   menu_index={index}
-                  toggle={this.togglePop}
+                  toggle={this.resetPop}
                   updateState={this.updateState}
                   item={this.state.item}
                 />
@@ -157,23 +166,21 @@ class Menu extends React.Component {
               >
                 Delete
               </button>
-              {menu.items.map((item,item_index) => {
+              {menu.items.map((item, item_index) => {
                 return (
-                <div key={item_index}>
-                  <p>{item.name}</p>
-                  <p>{item.description}</p>
-                  <button onClick={() => this.editItem(item)}>Edit</button>
-                  <button onClick={() => this.deleteItem(item,item_index,index)}>Delete</button>
-                </div>
+                  <div key={item_index}>
+                    <p>{item.name}</p>
+                    <p>{item.description}</p>
+                    <button onClick={() => this.editItem(item)}>Edit</button>
+                    <button
+                      onClick={() => this.deleteItem(item, item_index, index)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 );
               })}
-              <button
-                onClick={() => {
-                  this.togglePop();
-                }}
-              >
-                Add Item
-              </button>
+              <button onClick={() => this.togglePop(menu)}>Add Item</button>
             </div>
           );
         })}
