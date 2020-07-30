@@ -3,7 +3,8 @@ import { RestaurantsContext } from "../../context/restaurants-context";
 import { Link } from "react-router-dom";
 import OpeningHours from "./OpeningHours";
 import ContactInfo from "./ContactInfo";
-import Menu from "../restaurant/Menu";
+import Menu from "../restaurant/menu";
+
 import Styles from "../shared/Styles";
 
 class UserRestaurants extends React.Component {
