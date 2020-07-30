@@ -19,7 +19,7 @@ const RestaurantStyle = styled.div`
   h1 {
     color: ${(props) => props.header || "black"};
     text-align: center;
-    font-size: 6rem;
+    font-size: 10vw;
   }
 `;
 
@@ -52,6 +52,7 @@ const MenuStyle = styled.div`
   }
   h2{
     text-align: center;
+    margin-bottom: 10px;
   }
 `;
 const ItemsStyle = styled.div`
