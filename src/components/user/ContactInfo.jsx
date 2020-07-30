@@ -1,7 +1,6 @@
 import React from "react";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import ContactForm from "./ContactForm";
-import Table from "../shared/Table";
 
 class ContactInfo extends React.Component {
   static contextType = RestaurantsContext;
@@ -37,7 +36,7 @@ class ContactInfo extends React.Component {
     const res_index = this.context.restaurants.findIndex((item) => {
       return item.id === this.state.restaurant.id;
     });
-    this.setState({restaurant: this.context.restaurants[res_index]});
+    this.setState({ restaurant: this.context.restaurants[res_index] });
   };
 
   editContactFormSubmit = async (event) => {
@@ -65,15 +64,12 @@ class ContactInfo extends React.Component {
   };
 
   deleteContact = async (rest_id, cont_id) => {
-    await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/restaurants/${rest_id}/contact_infos/${cont_id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants/${rest_id}/contact_infos/${cont_id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     this.context.dispatch("remove contact", {
       restaurant_id: rest_id,
       contact_id: cont_id,
@@ -82,7 +78,7 @@ class ContactInfo extends React.Component {
 
   render() {
     return (
-      <Table>
+      <div className={"formGrid"}>
         <ul>
           <li>Name</li>
           <li>Type</li>
@@ -92,10 +88,7 @@ class ContactInfo extends React.Component {
         {this.state.restaurant.contact_infos.map((contact_info, index) => {
           return index === this.state.edit_contact_index ? (
             <div key={index} className="contact_info">
-              <form
-                id="edit_contact_form"
-                onSubmit={this.editContactFormSubmit}
-              >
+              <form id="edit_contact_form" onSubmit={this.editContactFormSubmit}>
                 <ul>
                   <li>
                     <input
@@ -143,17 +136,8 @@ class ContactInfo extends React.Component {
                 <li>{contact_info.info}</li>
                 <li>{contact_info.info_type}</li>
                 <li>
-                  <button onClick={() => this.editContact(index, contact_info)}>
-                    Edit
-                  </button>
-                  <button
-                    onClick={() =>
-                      this.deleteContact(
-                        contact_info.restaurant_id,
-                        contact_info.id
-                      )
-                    }
-                  >
+                  <button onClick={() => this.editContact(index, contact_info)}>Edit</button>
+                  <button onClick={() => this.deleteContact(contact_info.restaurant_id, contact_info.id)}>
                     Delete
                   </button>
                 </li>
@@ -167,7 +151,7 @@ class ContactInfo extends React.Component {
           getRestaurants={this.props.getRestaurants}
           update={this.update}
         />
-      </Table>
+      </div>
     );
   }
 }

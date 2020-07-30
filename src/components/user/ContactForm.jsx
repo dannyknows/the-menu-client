@@ -17,7 +17,7 @@ class ContactForm extends React.Component {
 
   onFormSubmit = async (event) => {
     event.preventDefault();
-    if(this.props.res_id){
+    if (this.props.res_id) {
       const body = {
         contact_info: {
           name: this.state.name,
@@ -40,60 +40,51 @@ class ContactForm extends React.Component {
         if (response.status >= 400) {
           const error = await response.json();
           throw error;
-        }else{
+        } else {
           const newContactInfo = await response.json();
           this.context.dispatch("new contact", newContactInfo);
-          this.props.update()
+          this.props.update();
           this.setState({ info_type: "link", name: undefined, info: undefined });
         }
       } catch (err) {
         console.log(err.errors);
-        this.setState({errMessage: err});
+        this.setState({ errMessage: err });
       }
-    }else{
-      
+    } else {
     }
     document.getElementById(`contact_form${this.state.res_id}`).reset();
   };
 
   render() {
+<<<<<<< HEAD
     const {errMessage, res_id} = this.state;
     return (
       <>
       {errMessage && errMessage.errors.map((error, index) => <p key={index} style={{ color: "red" }}>{error}</p>)}
         <form id={`contact_form${res_id}`} onSubmit={this.onFormSubmit}>
+=======
+    const { errMessage } = this.state;
+    return (
+      <>
+        {errMessage && errMessage.errors.map((error) => <p style={{ color: "red" }}>{error}</p>)}
+        <form id="contact_form" onSubmit={this.onFormSubmit}>
+>>>>>>> cd5aeb68a493420e506fea34f06a8ec3980673a6
           <ul>
             <li>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Name"
-                onChange={this.onInputChange}
-              />
+              <input type="text" name="name" id="name" placeholder="Name" onChange={this.onInputChange} />
             </li>
             <li>
-              <input
-                type="text"
-                name="info"
-                id="info"
-                placeholder="Info"
-                onChange={this.onInputChange}
-              />
+              <input type="text" name="info" id="info" placeholder="Info" onChange={this.onInputChange} />
             </li>
             <li>
-              <select
-                name="info_type"
-                id="info_type"
-                onChange={this.onInputChange}
-              >
+              <select name="info_type" id="info_type" onChange={this.onInputChange}>
                 <option value="link">Link</option>
                 <option value="phone number">Phone Number</option>
                 <option value="other">Other</option>
               </select>
             </li>
             <li>
-              <input type="submit" value="Add Contact Detail" />
+              <input className={"button"} type="submit" value="Add" />
             </li>
           </ul>
         </form>

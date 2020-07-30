@@ -1,7 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Banner = styled.h1`
-  background: #AFBA6A;
+  width: 100vw;
+  background: #afba6a;
   color: white;
   padding: 0.25em 1em;
   text-align: center;
@@ -9,6 +10,6 @@ const Banner = styled.h1`
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   box-shadow: 0px 0px 20px #888888;
   font-family: Arial, Helvetica, sans-serif;
-  `
+`;
 
 export default Banner;

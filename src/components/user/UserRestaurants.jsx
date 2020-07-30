@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import OpeningHours from "./OpeningHours";
 import ContactInfo from "./ContactInfo";
 import Menu from "../restaurant/Menu";
-
 import Styles from "../shared/Styles";
 
 class UserRestaurants extends React.Component {
@@ -55,17 +54,13 @@ class UserRestaurants extends React.Component {
         return (
           <div key={index} className="restaurant">
             <h3>{restaurant.name} </h3>
-            <OpeningHours
-              opening_hours={JSON.parse(restaurant.opening_hours)}
-              restaurantId={restaurant.id}
-            />
+            <OpeningHours opening_hours={JSON.parse(restaurant.opening_hours)} restaurantId={restaurant.id} />
             <ContactInfo restaurant={restaurant} index={index} />
             <Menu restaurant={restaurant} new_status={false} />
             <div className="edit-delete-container">
+              <button>Edit</button>
+              <button onClick={() => this.deleteRestaurant(restaurant.id)}>Delete</button>
               <Link to={`/restaurant/${restaurant.subdomain}`}> View </Link>
-              <button onClick={() => this.deleteRestaurant(restaurant.id)}>
-                Delete
-              </button>
             </div>
             <hr />
           </div>
@@ -74,12 +69,15 @@ class UserRestaurants extends React.Component {
         return (
           <div key={index} className="restaurant">
             <h3>{restaurant.name} </h3>
-            <h4>{restaurant.subdomain}</h4>
-            <OpeningHours
-              opening_hours={JSON.parse(restaurant.opening_hours)}
-              restaurantId={restaurant.id}
-            />
-            <ContactInfo restaurant={restaurant} index={index} />
+            <div>
+              <h4>Opening Hours</h4>
+              <OpeningHours
+                opening_hours={JSON.parse(restaurant.opening_hours)}
+                restaurantId={restaurant.id}
+              />
+              <h4>Contact Info</h4>
+              <ContactInfo restaurant={restaurant} index={index} />
+            </div>
             <Menu restaurant={restaurant} />
             {}
             <Styles
@@ -89,12 +87,14 @@ class UserRestaurants extends React.Component {
               style={{id: restaurant.style.id, style_data: JSON.parse(restaurant.style.style_data)}}
             />
             <div className="edit-delete-container">
-              <Link to={`/restaurant/${restaurant.subdomain}`}> View </Link>
+              <Link class={"button"} to={`/restaurant/${restaurant.subdomain}`}>
+                {" "}
+                Visit Restaurant{" "}
+              </Link>
               <button onClick={() => this.deleteRestaurant(restaurant.id)}>
                 Delete
               </button>
             </div>
-            <hr />
           </div>
         );
       }
