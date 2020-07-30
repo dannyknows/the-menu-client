@@ -45,6 +45,7 @@ class ProtectedRoute extends Component {
           } else {
             const { user } = await response.json();
             this.context.dispatch("populate", { restaurants, user });
+            console.log("TEST");
             this.setState({
               auth: true,
               loading: false,
