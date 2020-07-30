@@ -44,8 +44,8 @@ class ProtectedRoute extends Component {
             throw new Error("not authorized");
           } else {
             const { user } = await response.json();
-            this.context.dispatch("populate", { restaurants, user });
             console.log("TEST");
+            this.context.dispatch("populate", { restaurants, user });
             this.setState({
               auth: true,
               loading: false,
