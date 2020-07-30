@@ -89,8 +89,8 @@ class NewRestaurant extends React.Component {
         }
       );
       if (response.status >= 400) {
-        const test = await response.json();
-        throw new Error(response);
+        const errors = await response.json();
+        throw errors;
       } else {
         const newRestaurantInfo = await response.json();
         this.context.dispatch("add restaurant", {
@@ -105,15 +105,17 @@ class NewRestaurant extends React.Component {
         });
       }
     } catch (err) {
-      console.log(err);
+      this.setState({errMessage: err});
     }
   };
 
   render() {
+    const { errMessage } = this.state;
     return this.state.status === "restaurant" ? (
       <>
         <form onSubmit={this.handleSubmit}>
           <p>Restaurant Name:</p>
+          {errMessage && errMessage.errors.map((error) => <p style={{ color: "red" }}>{error}</p>)}
           <input
             type="text"
             id="resName"

@@ -6,19 +6,32 @@ const ColorBlock = styled.input`
   height: 50px;
   width: 50px;
   padding: 0;
-  border: none;
   margin-right: 2.5px;
   margin-left: 2.5px;
+  border-radius: 3px;
+  border: none;
 `;
 
-// Create an Input component that'll render an <input> tag with some styles
-const Input = styled.div`
+const Preview = styled.div`
+  height: 50px;
+  width: 100px;
   padding: 0.5em;
   margin: 0.5em;
   color: ${(props) => props.textColor || "white"};
   background: ${(props) => props.bgColor || "palevioletred"};
   border: 2px solid ${(props) => props.borderColour};
   border-radius: 3px;
+  .foreground{
+    text-align: center;
+    background: ${(props) => props.foreground || "white"};
+    margin: 2px;
+    padding: 2px;
+    height: 41px;
+    border: 2px solid ${(props) => props.borderColour};
+    h3{
+      color: ${(props) => props.header}
+    }
+  }
 `;
 
 class Styles extends React.Component {
@@ -47,6 +60,7 @@ class Styles extends React.Component {
       border: this.state.border,
       header: this.state.header,
     });
+    console.log(jsonData);
     const body = {
       style: {
         style_data: jsonData,
@@ -99,13 +113,6 @@ class Styles extends React.Component {
         );
         const newStyle = await response.json();
         this.setState({ style: newStyle });
-        // this.state.style.style_data = {
-        //   foreground: "#000000FF",
-        //   background: "#000000FF",
-        //   color: "#FFFFFFFF",
-        //   border: "#000000FF",
-        //   header: "#000000FF",
-        // }
         this.context.dispatch("new style", {
           type: "Restaurant",
           id: this.props.id,
@@ -117,20 +124,22 @@ class Styles extends React.Component {
     }
   };
   render() {
-    console.log(this.state.background);
+    console.log(this.props.style);
     return (
       <div>
-        <Input defaultValue="@probablyup" type="text" />
-        <Input
-          defaultValue="@geelen"
+        <Preview
           type="text"
           bgColor={this.state.background}
           textColor={this.state.color}
           borderColour={this.state.border}
+          header={this.state.header}
+          foreground={this.state.foreground}
         >
-          {" "}
-          <p>TEST</p>
-        </Input>
+          <div className="foreground">
+            <h3>Title</h3>
+            <p>text</p>
+          </div>
+        </Preview>
         <div>
           <label htmlFor="Colour">
             <p>Colour Scheme:</p>
@@ -169,6 +178,15 @@ class Styles extends React.Component {
                 id="background"
               />
               <p>Background Colour</p>
+            </div>
+            <div>
+              <ColorBlock
+                type="color"
+                value={this.state.border}
+                onChange={this.onInputChange}
+                id="border"
+              />
+              <p>Border Colour</p>
             </div>
             <button onClick={this.updateStyles}>Save Colours</button>
           </label>
