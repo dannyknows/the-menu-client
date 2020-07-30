@@ -3,7 +3,7 @@ import { RestaurantsContext } from "../../context/restaurants-context";
 import { Link } from "react-router-dom";
 import OpeningHours from "./OpeningHours";
 import ContactInfo from "./ContactInfo";
-import Menu from "../restaurant/Menu";
+import Menu from "../restaurant/menu";
 import Styles from "../shared/Styles";
 
 class UserRestaurants extends React.Component {
@@ -84,7 +84,7 @@ class UserRestaurants extends React.Component {
               type={"Restaurant"}
               id={restaurant.id}
               new={false}
-              style={{id: restaurant.style.id, style_data: JSON.parse(restaurant.style.style_data)}}
+              // style={{id: restaurant.style.id, style_data: JSON.parse(restaurant.style.style_data)}}
             />
             <div className="edit-delete-container">
               <Link class={"button"} to={`/restaurant/${restaurant.subdomain}`}>
