@@ -5,8 +5,7 @@ import styled from "styled-components";
 import OpeningHours from "../user/OpeningHours";
 import ContactInfo from "../user/ContactInfo";
 import { RestaurantsContext } from "../../context/restaurants-context";
-import Menu from "./Menu";
-import Styles from "../shared/Styles";
+import Menu from "./menu";
 
 const ColorBlock = styled.input`
   height: 50px;
