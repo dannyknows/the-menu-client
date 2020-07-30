@@ -65,7 +65,6 @@ class Styles extends React.Component {
         style_data: jsonData,
       },
     };
-    console.log(this.state.style);
     try {
       await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/styles/${this.state.style.id}`,
@@ -123,7 +122,6 @@ class Styles extends React.Component {
     }
   };
   render() {
-    console.log(this.props.style);
     return (
       <div>
         <div>

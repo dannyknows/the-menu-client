@@ -40,14 +40,12 @@ class Menu extends React.Component {
     );
     const newMenu = await response.json();
     this.context.dispatch("new menu", { ...newMenu, items: [] });
-    console.log(this.state.restaurant)
     if(this.props.new_status){
       this.setState((state) => {
         state.restaurant.menus.push({ ...newMenu, items: [] });
         return { restaurant: { ...state.restaurant } };
       });
     }
-    console.log(event);
     document.getElementById(`menu_form${this.state.restaurant.id}`).reset();
   };
 

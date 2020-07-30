@@ -73,7 +73,6 @@ export default class Restaurant extends Component {
       );
       const json_response = await response.json();
       const restaurant = json_response.restaurant;
-      console.log(restaurant);
       this.setState({ restaurant: { ...restaurant } });
     } catch (error) {}
   }
@@ -87,7 +86,6 @@ export default class Restaurant extends Component {
     if (restaurant.style) {
       const { style_data } = restaurant.style;
       const styleData = JSON.parse(style_data);
-      console.log(styleData.color, styleData.foreground);
       return (
         <RestaurantStyle
           background={styleData.background}

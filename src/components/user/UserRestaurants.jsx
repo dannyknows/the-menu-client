@@ -79,7 +79,6 @@ class UserRestaurants extends React.Component {
               <ContactInfo restaurant={restaurant} index={index} />
             </div>
             <Menu restaurant={restaurant} />
-            {console.log("TEST")}
             <Styles
               type={"Restaurant"}
               id={restaurant.id}

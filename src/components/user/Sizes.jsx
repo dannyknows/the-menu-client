@@ -88,7 +88,6 @@ class Sizes extends React.Component {
         size_index: size_index
       });
     } catch (error) {
-      console.log("ERROR");
       console.log(error);
     }
   };

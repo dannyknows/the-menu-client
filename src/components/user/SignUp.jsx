@@ -41,7 +41,6 @@ class SignUp extends React.Component {
         this.props.history.push("/dashboard/new");
       }
     } catch (err) {
-      console.log(err.errors);
       this.setState({errMessage: err});
     }
   };
