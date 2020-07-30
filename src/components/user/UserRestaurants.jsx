@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import OpeningHours from "./OpeningHours";
 import ContactInfo from "./ContactInfo";
 import Menu from "../restaurant/Menu";
+import Styles from "../shared/Styles";
 
 class UserRestaurants extends React.Component {
   static contextType = RestaurantsContext;
@@ -17,7 +18,7 @@ class UserRestaurants extends React.Component {
       infoType: "",
       restaurantId: "",
       editContactIndex: "",
-      restaurants: ""
+      restaurants: "",
     };
   }
 
@@ -80,9 +81,16 @@ class UserRestaurants extends React.Component {
             />
             <ContactInfo restaurant={restaurant} index={index} />
             <Menu restaurant={restaurant} />
+            {console.log(restaurant)}
+            {/* <Styles
+              type={"Restaurant"}
+              id={restaurant.id}
+              new={false}
+              style={JSON.parse(restaurant.style.style_data)}
+            /> */}
             <div className="edit-delete-container">
               <Link to={`/restaurant/${restaurant.subdomain}`}> View </Link>
-              <button>Edit</button>
+              {/* <button>Edit</button> */}
               <button onClick={() => this.deleteRestaurant(restaurant.id)}>
                 Delete
               </button>

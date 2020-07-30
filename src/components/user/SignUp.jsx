@@ -25,7 +25,8 @@ class SignUp extends React.Component {
         body: JSON.stringify({ user: { email, password, full_name } }),
       });
       if (response.status >= 400) {
-        throw new Error("incorrect credentials");
+        const error = await response.json();
+        throw error;
       } else {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
           method: "POST",
@@ -36,15 +37,16 @@ class SignUp extends React.Component {
         });
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
-        this.props.history.push("/restaurant/new");
+        this.props.history.push("/dashboard/new");
       }
     } catch (err) {
-      console.error(err.message);
+      console.log(err.errors);
+      this.setState({errMessage: err});
     }
   };
 
   render() {
-    const { email, password, full_name } = this.state;
+    const { email, password, full_name, errMessage } = this.state;
     return (
       <div className="login-home">
         <header>
@@ -64,6 +66,7 @@ class SignUp extends React.Component {
         </header>
         <div className="login-box">
           <h2>Sign Up</h2>
+          {errMessage && errMessage.errors.map((error) => <p style={{ color: "red" }}>{error}</p>)}
           <form onSubmit={this.onFormSubmit}>
             <div className="user-box">
               <input
