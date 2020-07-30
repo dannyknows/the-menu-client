@@ -66,7 +66,7 @@ class Sizes extends React.Component {
     };
 
     try {
-      const response = await fetch(
+      await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/items/${size.item_id}/sizes/${size.id}`,
         {
           method: "PUT",
@@ -88,7 +88,6 @@ class Sizes extends React.Component {
         size_index: size_index
       });
     } catch (error) {
-      console.log("ERROR");
       console.log(error);
     }
   };

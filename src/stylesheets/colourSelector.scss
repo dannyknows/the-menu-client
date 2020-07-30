@@ -1,0 +1,30 @@
+.mainColourSelection{
+  display: flex;
+  flex-flow: column;
+  justify-self: center;
+  align-items: center;
+  button{
+    margin-top: 10px;
+    color: #7371ea;
+    border: 5px solid rgba($color: #000000, $alpha: 0.0);
+    transition: ease-in-out 0.7s;
+  }
+  button:hover{
+    border: 5px solid #71BCEA;
+  }
+}
+.colourSelector{
+  display: flex;
+  justify-content: center;
+  border: 3px solid #71BCEA;
+  padding: 5px;
+  border-radius: 10px;
+  width: 280px;
+}
+.singleColour{
+  font-size: 10px;
+  p{
+    width: 50px;
+    text-align: center;
+  }
+}

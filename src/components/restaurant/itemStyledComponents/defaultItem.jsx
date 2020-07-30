@@ -29,9 +29,9 @@ class Default extends Component {
           <h3>{name}</h3>
           <>
             {sizes &&
-              sizes.map((size) => {
+              sizes.map((size, index) => {
                 return (
-                  <span>
+                  <span key={index}>
                     <b>
                       ${(size.price / 1000).toFixed(2)} {size.name}
                     </b>

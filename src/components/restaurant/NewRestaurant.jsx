@@ -1,16 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 // components
 import OpeningHours from "../user/OpeningHours";
 import ContactInfo from "../user/ContactInfo";
 import { RestaurantsContext } from "../../context/restaurants-context";
-import Menu from "./menu";
+import Menu from "./Menu";
 import Styles from "../shared/Styles";
 import Banner from "../shared/Banner";
-
-const ColorBlock = styled.input``;
+import { Link } from "react-router-dom";
 
 class NewRestaurant extends React.Component {
   static contextType = RestaurantsContext;
@@ -58,12 +55,6 @@ class NewRestaurant extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const styles = {
-      headerColour: this.state.headerColour,
-      fontColour: this.state.fontColour,
-      foregroundColour: this.state.foregroundColour,
-      backgroundColour: this.state.backgroundColour,
-    };
     const body = {
       restaurant: {
         name: this.state.restaurant_name,
@@ -111,13 +102,14 @@ class NewRestaurant extends React.Component {
             <div className={"name"}>
               <form onSubmit={this.handleSubmit}>
                 <p>Restaurant Name:</p>
-                {errMessage && errMessage.errors.map((error) => <p style={{ color: "red" }}>{error}</p>)}
+                {errMessage && errMessage.errors.map((error, index) => <p key={index} style={{ color: "red" }}>{error}</p>)}
                 <input
                   type="text"
                   id="resName"
                   placeholder="Name"
                   value={this.state.restaurant_name}
                   onChange={this.handleChange}
+                  data-testid="name"
                 />
                 <input className={"button"} type="submit" value="Submit" />
               </form>

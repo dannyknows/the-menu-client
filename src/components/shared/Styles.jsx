@@ -39,9 +39,9 @@ class Styles extends React.Component {
   state = {
     foreground: this.props.style.style_data.foreground,
     background: this.props.style.style_data.background,
-    color: this.props.style.style_data.color ,
-    border: this.props.style.style_data.border ,
-    header: this.props.style.style_data.header ,
+    color: this.props.style.style_data.color,
+    border: this.props.style.style_data.border,
+    header: this.props.style.style_data.header,
     style: this.props.style,
   };
 
@@ -60,22 +60,23 @@ class Styles extends React.Component {
       border: this.state.border,
       header: this.state.header,
     });
-    console.log(jsonData);
     const body = {
       style: {
         style_data: jsonData,
       },
     };
-    console.log(this.state.style);
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/styles/${this.state.style.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(body),
-      });
+      await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/styles/${this.state.style.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
       this.state.style.style_data = jsonData;
       this.context.dispatch("new style", {
         type: "Restaurant",
@@ -118,10 +119,10 @@ class Styles extends React.Component {
     }
   };
   render() {
-    console.log(this.props.style);
     return (
-      <div className={"styleSelector"}>
-        <h3>Colour Scheme:</h3>
+      <div>
+        <div className={"colorSel"}>
+          <label htmlFor="Colour" className="mainColourSelection">
         <Preview
           className={"preview"}
           type="text"
@@ -136,10 +137,9 @@ class Styles extends React.Component {
             <p>text</p>
           </div>
         </Preview>
-        <div className={"colorSel"}>
-          <label htmlFor="Colour">
-            <div>
-              <div>
+            <h4>Colour Scheme:</h4>
+            <div className="colourSelector">
+              <div className="singleColour">
                 <ColorBlock
                   type="color"
                   value={this.state.header}
@@ -148,11 +148,16 @@ class Styles extends React.Component {
                 />
                 <p>Header Colour</p>
               </div>
-              <div>
-                <ColorBlock type="color" value={this.state.color} onChange={this.onInputChange} id="color" />
+              <div className="singleColour">
+                <ColorBlock
+                  type="color"
+                  value={this.state.color}
+                  onChange={this.onInputChange}
+                  id="color"
+                />
                 <p>Font Colour</p>
               </div>
-              <div>
+              <div className="singleColour">
                 <ColorBlock
                   type="color"
                   value={this.state.foreground}
@@ -161,7 +166,7 @@ class Styles extends React.Component {
                 />
                 <p>Foreground Colour</p>
               </div>
-              <div>
+              <div className="singleColour">
                 <ColorBlock
                   type="color"
                   value={this.state.background}
@@ -170,7 +175,7 @@ class Styles extends React.Component {
                 />
                 <p>Background Colour</p>
               </div>
-              <div>
+              <div className="singleColour">
                 <ColorBlock
                   type="color"
                   value={this.state.border}

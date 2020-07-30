@@ -97,8 +97,6 @@ function dispatch(action, value) {
           state.restaurants[res_index].menus,
           value.item.menu_id
         );
-        console.log(value);
-        console.log(menu_index);
         state.restaurants[res_index].menus[menu_index].items.push(value.item);
         return { restaurants: [...state.restaurants] };
       });

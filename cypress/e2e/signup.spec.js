@@ -9,8 +9,7 @@ describe("when signing up user", () => {
     cy.findByLabelText(/Password/).type(user.password);
     cy.findByLabelText(/Full Name/).type(user.full_name);
     cy.findByText(/Submit/).click();
-    cy.url().should("eq", "http://localhost:8080/restaurant/new");
+    cy.url().should("eq", "http://localhost:8080/dashboard/new");
     cy.window().its("localStorage.token").should("be.a", "string");
-    // cy.findByTestId("no-bookmarks", {timeout: 500});
   });
 });

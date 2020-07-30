@@ -25,29 +25,33 @@ class ProtectedRoute extends Component {
       });
     }
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/restaurants`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       if (response.status >= 400) {
         throw new Error("not authorized");
       } else {
-        const { jwt, restaurants } = await response.json();
+        const { restaurants } = await response.json();
         try {
-          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/status/user`, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          });
+          const response = await fetch(
+            `${process.env.REACT_APP_BACKEND_URL}/status/user`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
           if (response.status >= 400) {
             throw new Error("not authorized");
           } else {
             const { user } = await response.json();
-            // localStorage.setItem('token', jwt)
-            const token = localStorage.getItem("token");
-            const auth = localStorage.getItem("auth");
             this.context.dispatch("populate", { restaurants, user });
+
             this.setState({
               auth: true,
               loading: false,
@@ -74,7 +78,11 @@ class ProtectedRoute extends Component {
           <Switch>
             <Route exact path="/dashboard/item" component={Item} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/restaurant/:subdomain/:state" component={Restaurant} />
+            <Route
+              exact
+              path="/restaurant/:subdomain/:state"
+              component={Restaurant}
+            />
             <Route exact path="/theme" component={StyleView} />
             <Route exact path="/dashboard/new" component={NewRestaurant} />
           </Switch>

@@ -45,8 +45,6 @@ class ContactForm extends React.Component {
           this.context.dispatch("new contact", newContactInfo);
           this.props.update();
           this.setState({ info_type: "link", name: undefined, info: undefined });
-          // const { history } = this.props;
-          // if (history) history.push("/dashboard");
         }
       } catch (err) {
         console.log(err.errors);
@@ -54,15 +52,15 @@ class ContactForm extends React.Component {
       }
     } else {
     }
-    document.getElementById("contact_form").reset();
+    document.getElementById(`contact_form${this.state.res_id}`).reset();
   };
 
   render() {
-    const { errMessage } = this.state;
+    const {errMessage, res_id} = this.state;
     return (
       <>
-        {errMessage && errMessage.errors.map((error) => <p style={{ color: "red" }}>{error}</p>)}
-        <form id="contact_form" onSubmit={this.onFormSubmit}>
+      {errMessage && errMessage.errors.map((error, index) => <p key={index} style={{ color: "red" }}>{error}</p>)}
+        <form id={`contact_form${res_id}`} onSubmit={this.onFormSubmit}>
           <ul>
             <li>
               <input type="text" name="name" id="name" placeholder="Name" onChange={this.onInputChange} />
