@@ -221,21 +221,21 @@ My name is The Zuck, I want to find out what my local Chilean restaurant offers 
 
 # Dataflow Diagram
 
-![Dataflow Diagram](./resources/DatafFlowDiagram.png)
+![Dataflow Diagram](./docs/DatafFlowDiagram.png)
 
 # Entity Relationship Diagram
 
-![ERD](./resources/ERD.png)
+![ERD](./docs/ERD.png)
 
 # Application Architecture Diagram
 
-![Application Architecture Diagram](./resources/AppArchitectureDiagram.png)
+![Application Architecture Diagram](./docs/AppArchitectureDiagram.png)
 
 # Wire Frames
 
 Below are the wire frames for this project, to better understand them the following legend has been provided.
 
-![Wire Frame Legend](./resources/wireframes/mobile/Legend.png)
+![Wire Frame Legend](./docs/wireframes/mobile/Legend.png)
 
 As shown on the legend above image place holder are represented by large grey square, user input by grey rectangles with text and button by blue rounded rectangles.
 
@@ -243,31 +243,31 @@ As shown on the legend above image place holder are represented by large grey sq
 
 ### Landing Page
 
-![Landing Page](./resources/wireframes/mobile/Landing.png)
+![Landing Page](./docs/wireframes/mobile/Landing.png)
 
 The landing page will have a large image as a background.
 
 ### Log In
 
-![Login](./resources/wireframes/mobile/Login.png)
+![Login](./docs/wireframes/mobile/Login.png)
 
 ### Sign Up
 
-![Sign Up](./resources/wireframes/mobile/CreateAccount.png)
+![Sign Up](./docs/wireframes/mobile/CreateAccount.png)
 
 ### Update Account
 
-![Update Account](./resources/wireframes/mobile/UpdateAccount.png)
+![Update Account](./docs/wireframes/mobile/UpdateAccount.png)
 
 ### User DashBoard
 
-![Account](./resources/wireframes/mobile/Account.png)
+![Account](./docs/wireframes/mobile/Account.png)
 
 Clicking the edit button will allow a user to change their password, name and email.
 
 ### Restaurant Creation
 
-![Create Restaurant](./resources/wireframes/mobile/CreateRestaurant.png)
+![Create Restaurant](./docs/wireframes/mobile/CreateRestaurant.png)
 
 Clicking add for opening hours and contact details will add a form below each section respectively to allow for a user to fill in and add a new entry.
 
@@ -277,19 +277,19 @@ Filling in the text input labelled "Enter Menu Name" and pressing Add a Menu wil
 
 ### Menu Theme Selection
 
-![Pick Menu Theme](./resources/wireframes/mobile/PickMenuTheme.png)
+![Pick Menu Theme](./docs/wireframes/mobile/PickMenuTheme.png)
 
 Clicking the colours in the colour scheme will open a colour selector in which a user could select a colour.
 
 ### Item Theme Selection
 
-![Pick Item Theme](./resources/wireframes/mobile/PickItemTheme.png)
+![Pick Item Theme](./docs/wireframes/mobile/PickItemTheme.png)
 
 Clicking the colours in the colour scheme will open a colour selector in which a user could select a colour.
 
 ### Menu Item 
 
-![Add Item](./resources/wireframes/mobile/AddItem.png)
+![Add Item](./docs/wireframes/mobile/AddItem.png)
 
 Pressing the grey image box below will allow you to upload an image.
 
@@ -297,35 +297,35 @@ Pressing the grey image box below will allow you to upload an image.
 
 This wire frame shows how the menu might look like on a final page restaurant page.
 
-![Menu View](./resources/wireframes/mobile/MenuView.png)
+![Menu View](./docs/wireframes/mobile/MenuView.png)
 
 ### Tag Filter Selection
 
 The following wire frames shows how filtering of tags might work on a final page.
 
-![Filter Options Menu](./resources/wireframes/mobile/FilterOptionsMenu.png)
+![Filter Options Menu](./docs/wireframes/mobile/FilterOptionsMenu.png)
 
-![Filter Options Menu 2](./resources/wireframes/mobile/FilterOptionsMenu-1.png)
+![Filter Options Menu 2](./docs/wireframes/mobile/FilterOptionsMenu-1.png)
 
 ## Desktop
 
 ### Landing Page
 
-![Landing Page](./resources/wireframes/desktop/Landing.png)
+![Landing Page](./docs/wireframes/desktop/Landing.png)
 
 The landing page will have a large image as a background.
 
 ### Log In
 
-![Login](./resources/wireframes/desktop/LogIn.png)
+![Login](./docs/wireframes/desktop/LogIn.png)
 
 ### Sign Up
 
-![Create Account](./resources/wireframes/desktop/CreateAccount.png)
+![Create Account](./docs/wireframes/desktop/CreateAccount.png)
 
 ### User DashBoard
 
-![User Dashboard](resources/wireframes/desktop/UserDashboard.png)
+![User Dashboard](docs/wireframes/desktop/UserDashboard.png)
 
 Clicking the edit button will allow a user to change their password, name and email.
 
@@ -335,7 +335,7 @@ Clicking add for opening hours and contact details will add a form below each se
 
 ### Restaurant Creation
 
-![Create a restaurant](./resources/wireframes/desktop/CreateARestaurant.png)
+![Create a restaurant](./docs/wireframes/desktop/CreateARestaurant.png)
 
 Clicking add for opening hours and contact details will add a form below each section respectively to allow for a user to fill in and add a new entry.
 
@@ -345,13 +345,13 @@ Filling in the text input labelled "Enter Menu Name" and pressing Add a Menu wil
 
 ### Item Page
 
-![Item Page](./resources/wireframes/desktop/ItemPage.png)
+![Item Page](./docs/wireframes/desktop/ItemPage.png)
 
 Pressing the grey image box below will allow you to upload an image.
 
 ## Theme Selection
 
-![Theme Selection](resources/wireframes/desktop/StylePage.png)
+![Theme Selection](docs/wireframes/desktop/StylePage.png)
 
 Clicking the colours in the colour scheme will open a colour selector in which a user could select a colour.
 
@@ -359,13 +359,13 @@ The images will give you a preview of the themes chosen.
 
 ### Restaurant Edit View
 
-![Restaurant Edit View](./resources/wireframes/desktop/RestaurantEditView.png)
+![Restaurant Edit View](./docs/wireframes/desktop/RestaurantEditView.png)
 
 In this view you should be able to press an item/menu/the restaurant to get a colour selector to choose some of the colours. Clicking any of the edit icon will bring you to the appropriate pages for editing.
 
 ### Restaurant View
 
-![Restaurant View](./resources/wireframes/desktop/RestaurantView.png)
+![Restaurant View](./docs/wireframes/desktop/RestaurantView.png)
 
 This is what a final page restaurant may look like on desktop.
 
@@ -377,21 +377,21 @@ Restaurant owners will be given three templates for their menus and menu items b
 
 #### Menu Template 1
 
-![Menu Template 1](resources/wireframes/desktop/MenuTemplate1.png)
+![Menu Template 1](docs/wireframes/desktop/MenuTemplate1.png)
 
-![Menu Template 1](resources/wireframes/mobile/MenuTemplate1.png)
+![Menu Template 1](docs/wireframes/mobile/MenuTemplate1.png)
 
 #### Menu Template 2
 
-![Menu Template 2](resources/wireframes/desktop/MenuTemplate2.png)
+![Menu Template 2](docs/wireframes/desktop/MenuTemplate2.png)
 
-![Menu Template 2](resources/wireframes/mobile/MenuTemplate2.png)
+![Menu Template 2](docs/wireframes/mobile/MenuTemplate2.png)
 
 #### Menu Template 3
 
-![Menu Template 3](resources/wireframes/desktop/MenuTemplate3.png)
+![Menu Template 3](docs/wireframes/desktop/MenuTemplate3.png)
 
-![Menu Template 3](resources/wireframes/mobile/MenuTemplate3.png)
+![Menu Template 3](docs/wireframes/mobile/MenuTemplate3.png)
 
 ### Item Templates
 
@@ -399,23 +399,23 @@ Items template will look the same on both desktop and mobile
 
 #### Item Template 1
 
-![Item Template 1](./resources/wireframes/desktop/ItemTemplate1.png)
+![Item Template 1](./docs/wireframes/desktop/ItemTemplate1.png)
 
 #### Item Template 2
 
-![Item Template 2](./resources/wireframes/desktop/ItemTemplate2.png)
+![Item Template 2](./docs/wireframes/desktop/ItemTemplate2.png)
 
 #### Item Template 3
 
-![Item Template 3](./resources/wireframes/desktop/ItemTemplate3.png)
+![Item Template 3](./docs/wireframes/desktop/ItemTemplate3.png)
 
 ### Final Template
 
 This is what a web page may look like both on mobile and desktop after these templates has been applied.
 
-![Restaurant Mobile Template](resources/wireframes/mobile/RestaurantTemplate.png)
+![Restaurant Mobile Template](docs/wireframes/mobile/RestaurantTemplate.png)
 
-![Restaurant Desktop Template](resources/wireframes/mobile/Desktop-1.png)
+![Restaurant Desktop Template](docs/wireframes/mobile/Desktop-1.png)
 
 # Task Management
 
@@ -434,27 +434,27 @@ We will also assign a due date and any other relevant information to each card. 
 
 ### Tuesday 14-07-2020
 
-![Day 1 Trello](./resources/trello/Screenshot_2020-07-14%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 1 Trello](./docs/trello/Screenshot_2020-07-14%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 ### Wednesday 15-07-2020
 
-![Day 2 Trello](./resources/trello/Screenshot_2020-07-15%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 2 Trello](./docs/trello/Screenshot_2020-07-15%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 ### Thursday 16-07-2020
 
-![Day 3 Trello](./resources/trello/Screenshot_2020-07-16%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 3 Trello](./docs/trello/Screenshot_2020-07-16%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 ### Friday 17-07-2020
 
-![Day 4 Trello](./resources/trello/Screenshot_2020-07-17%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 4 Trello](./docs/trello/Screenshot_2020-07-17%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 ### Saturday 18-07-2020
 
-![Day 5 Trello](./resources/trello/Screenshot_2020-07-18%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 5 Trello](./docs/trello/Screenshot_2020-07-18%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 ### Sunday 19-07-2020
 
-![Day 6 Trello](./resources/trello/Screenshot_2020-07-19%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 6 Trello](./docs/trello/Screenshot_2020-07-19%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 
 ## Phase B - Development Journal
@@ -468,7 +468,7 @@ Our development process was very similar to what was outlined above with us disc
 
 ### Monday 20-07-2020
 
-![Day 7 Trello](./resources/trello/Screenshot_2020-07-20%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 7 Trello](./docs/trello/Screenshot_2020-07-20%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Spent the day setting up the rails back end and practising TDD pair programming making unit tests and setting up our models.
 
@@ -476,7 +476,7 @@ Danny Lowater: Pair programmed, following ERDs and set up React front end
 
 ### Tuesday 21-07-2020
 
-![Day 8 Trello](./resources/trello/Screenshot_2020-07-21%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 8 Trello](./docs/trello/Screenshot_2020-07-21%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Continued doing some pair programming and setting up the back end models. Also set up active storage and AWS for potential future use. Started on setting up back end authentication.
 
@@ -484,7 +484,7 @@ Danny Lowater: Continued pair programming, creating models and associated tests.
 
 ### Wednesday 22-07-2020
 
-![Day 9 Trello](./resources/trello/Screenshot_2020-07-22%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 9 Trello](./docs/trello/Screenshot_2020-07-22%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Finished user authentication in the back end and set up basic authentication on the front end. Installed and initialised cypress end to end testing creating one cypress test. Finished unit testing and models creation.
 
@@ -492,7 +492,7 @@ Danny Lowater: Researched subdomains, front end frame css frameworks, continued 
 
 ### Thursday 23-07-2020
 
-![Day 10 Trello](./resources/trello/Screenshot_2020-07-23%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 10 Trello](./docs/trello/Screenshot_2020-07-23%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Finished validation testing for the back end. Started on controller testing and controller creation.
 
@@ -500,7 +500,7 @@ Danny Lowater: Begun work on the react app, created, menu and item styled compon
 
 ### Friday 24-07-2020
 
-![Day 11 Trello](./resources/trello/Screenshot_2020-07-24%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 11 Trello](./docs/trello/Screenshot_2020-07-24%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Finished controller request testing and controller creation. Initialised context. Moved to front end and started setting up fetch requests for the user dashboard
 
@@ -508,7 +508,7 @@ Danny Lowater: Continued work on Front end, researching and designing best path 
 
 ### Saturday 25-07-2020
 
-![Day 12 Trello](./resources/trello/Screenshot_2020-07-25%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 12 Trello](./docs/trello/Screenshot_2020-07-25%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Added jbuilder to make better formatted json responses. Continued implementing the dashboard starting with adding adding contact info. Finished implementing context.
 
@@ -516,7 +516,7 @@ Danny Lowater: Tweaked seeds to suit actual front end behaviour, continued worki
 
 ### Sunday 26-07-2020
 
-![Day 13 Trello](./resources/trello/Screenshot_2020-07-26%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 13 Trello](./docs/trello/Screenshot_2020-07-26%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Finished showing restaurants in the dashboards and contact info create read update and delete. Started implementing opening hours create read update delete from the front end. Changed the back end to get user information and display and edit in the dashboard. Experimented in creating dynamic editable fields.
 
@@ -524,7 +524,7 @@ Danny Lowater: refactored and styled menus and menu items
 
 ### Monday 27-07-2020
 
-![Day 14 Trello](./resources/trello/Screenshot_2020-07-27%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 14 Trello](./docs/trello/Screenshot_2020-07-27%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Started adding new restaurant view and forms. Finished opening hours. Started menu read update and delete for dashboard and new restaurant. Added styling to the home page, log in and sign up pages.
 
@@ -532,7 +532,7 @@ Danny Lowater: Began work on restaurant styles, created protected routes
 
 ### Tuesday 28-07-2020
 
-![Day 15 Trello](./resources/trello/Screenshot_2020-07-28%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 15 Trello](./docs/trello/Screenshot_2020-07-28%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Finished menus create update and delete and added Items create update and delete including sizes and ingredients for Items.
 
@@ -540,7 +540,7 @@ Danny Lowater: worked through props and auth logic for protected routes. continu
 
 ### Wednesday 29-07-2020
 
-![Day 16 Trello](./resources/trello/Screenshot_2020-07-29%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 16 Trello](./docs/trello/Screenshot_2020-07-29%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Finished the new restaurant implementation. Deployed to heroku and netlify. Started adding custom colour styles for restaurants.
 
@@ -548,7 +548,7 @@ Danny Lowater: began code refactoring and styling dashboard
 
 ### Thursday 30-07-2020
 
-![Day 17 Trello](./resources/trello/Screenshot_2020-07-30%20T3A2%20-%20Final%20Project%20Trello.jpg)
+![Day 17 Trello](./docs/trello/Screenshot_2020-07-30%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
 Daniel Ask: Finished off restaurant style manipulation and finished off manual testing. Fixed some bugs. Set up the read me adding links, task management, trello shots, libraries and the set up guide.
 
@@ -558,7 +558,7 @@ Danny Lowater: Finished off styling for restaurant, new restaurant and dashboard
 
 The back end has been thoroughly tested and can be tested by running the `bin/rspec` from the command line in the source directory of the api project. Below is a screen shot the latest coverage report.
 
-![Code Coverage Report](./resources/CodeCoverageBackEnd.png)
+![Code Coverage Report](./docs/CodeCoverageBackEnd.png)
 
 # Manual Testing
 
@@ -566,4 +566,4 @@ This is the manual testing spreadsheet.
 
 [Manual Testing SpreadSheet](https://docs.google.com/spreadsheets/d/1kYWlWmVTFxD0SrZs61tq-D_yUbCguGuq2fswmia8LYw/edit?usp=sharing)
 
-![Manual Testing Spreadsheet Image](resources/ManualTesting.png)
+![Manual Testing Spreadsheet Image](docs/ManualTesting.png)
