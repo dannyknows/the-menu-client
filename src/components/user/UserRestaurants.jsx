@@ -36,8 +36,6 @@ class UserRestaurants extends React.Component {
     window.addEventListener("resize", this.handleWindowSizeChange);
   }
 
-  // make sure to remove the listener
-  // when the component is not mounted anymore
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleWindowSizeChange);
   }
@@ -51,6 +49,7 @@ class UserRestaurants extends React.Component {
     const isMobile = width <= 500;
     // the rest is the same...
     return this.context.restaurants.map((restaurant, index) => {
+      // Use this to change the layour for mobile
       if (isMobile) {
         return (
           <div key={index} className="restaurant">
@@ -61,6 +60,7 @@ class UserRestaurants extends React.Component {
             <div className="edit-delete-container">
               <button>Edit</button>
               <button onClick={() => this.deleteRestaurant(restaurant.id)}>Delete</button>
+              <Link to={`/restaurant/${restaurant.subdomain}`}> View </Link>
             </div>
             <hr />
           </div>
@@ -79,20 +79,21 @@ class UserRestaurants extends React.Component {
               <ContactInfo restaurant={restaurant} index={index} />
             </div>
             <Menu restaurant={restaurant} />
-            {console.log(restaurant)}
-            {/* <Styles
+            {}
+            <Styles
               type={"Restaurant"}
               id={restaurant.id}
               new={false}
-              style={JSON.parse(restaurant.style.style_data)}
-            /> */}
+              style={{id: restaurant.style.id, style_data: JSON.parse(restaurant.style.style_data)}}
+            />
             <div className="edit-delete-container">
               <Link class={"button"} to={`/restaurant/${restaurant.subdomain}`}>
                 {" "}
                 Visit Restaurant{" "}
               </Link>
-              {/* <button>Edit</button> */}
-              <button onClick={() => this.deleteRestaurant(restaurant.id)}>Delete</button>
+              <button onClick={() => this.deleteRestaurant(restaurant.id)}>
+                Delete
+              </button>
             </div>
           </div>
         );

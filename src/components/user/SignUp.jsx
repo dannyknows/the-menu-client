@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LoggedInButtons from "./LoggedInButtons";
 // import { BookmarksContext } from "../context/bookmarks-context";
 
 class SignUp extends React.Component {
@@ -52,10 +53,7 @@ class SignUp extends React.Component {
         <header>
         {this.context.currentUser || localStorage.getItem("auth") ? (
           <>
-            <Link className="button2" to="/dashboard">Dashboard</Link>
-            <button className="button2" id="logout" onClick={() => this.handleLogout()}>
-              Logout
-            </button>
+            <LoggedInButtons />
           </>
         ) : (
           <>

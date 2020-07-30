@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LoggedInButtons from "./LoggedInButtons";
 
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "" };
@@ -46,12 +47,7 @@ class Login extends React.Component {
       <div className='login-home'>
         <header>
         {this.context.currentUser || localStorage.getItem("auth") ? (
-          <>
-            <Link className="button2" to="/dashboard">Dashboard</Link>
-            <button className="button2" id="logout" onClick={() => this.handleLogout()}>
-              Logout
-            </button>
-          </>
+          <LoggedInButtons />
         ) : (
           <>
             <Link className="button2" to="/login">Login</Link>
