@@ -24,28 +24,33 @@ const RestaurantStyle = styled.div`
 `;
 
 export default class Restaurant extends Component {
-  state = { subdomain: this.props.match.params.subdomain, restaurant: [] };
+  state = { subdomain: this.props.match.params.subdomain, restaurant: {} };
 
   async componentDidMount() {
     const { subdomain } = this.state;
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/getrestaurants/${subdomain}`
-    );
-    const json_response = await response.json();
-    console.log(json_response);
-    this.setState({ restaurant: json_response.restaurant });
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/getrestaurants/${subdomain}`
+      );
+      const json_response = await response.json();
+      const restaurant = json_response.restaurant;
+      console.log(restaurant);
+      this.setState({restaurant: {...restaurant}});
+    } catch (error) {
+      
+    }
   }
 
   renderRestaurant(restaurant) {
     const { name, menus, contact_infos, style } = restaurant;
-    console.log(style);
     if (restaurant.style) {
       const { style_data } = restaurant.style;
       const styleData = JSON.parse(style_data);
+      console.log(styleData.color, styleData.foreground);
       return (
         <RestaurantStyle
           background={styleData.background}
-          foreground={styleData.color}
+          foreground={styleData.foreground}
           color={styleData.color}
           header={styleData.header}
           border={styleData.border}
@@ -60,7 +65,7 @@ export default class Restaurant extends Component {
             <div id="menus">
               {menus &&
                 menus.map((menu) => {
-                  return <div> {menu} </div>;
+                  return <div> {menu.title} </div>;
                 })}
             </div>
           </div>
