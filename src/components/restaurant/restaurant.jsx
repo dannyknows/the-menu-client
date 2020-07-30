@@ -79,7 +79,7 @@ export default class Restaurant extends Component {
   }
 
   renderRestaurant(restaurant) {
-    const { name, menus, contact_infos, style, opening_hours } = restaurant;
+    const { menus, contact_infos, opening_hours } = restaurant;
     let oh = "";
     if (opening_hours) {
       oh = JSON.parse(opening_hours);

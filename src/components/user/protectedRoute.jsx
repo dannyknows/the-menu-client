@@ -33,7 +33,7 @@ class ProtectedRoute extends Component {
       if (response.status >= 400) {
         throw new Error("not authorized");
       } else {
-        const { jwt, restaurants } = await response.json();
+        const { restaurants } = await response.json();
         try {
           const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/status/user`, {
             headers: {
@@ -44,9 +44,6 @@ class ProtectedRoute extends Component {
             throw new Error("not authorized");
           } else {
             const { user } = await response.json();
-            // localStorage.setItem('token', jwt)
-            const token = localStorage.getItem("token");
-            const auth = localStorage.getItem("auth");
             this.context.dispatch("populate", { restaurants, user });
             this.setState({
               auth: true,

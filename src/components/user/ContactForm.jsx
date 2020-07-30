@@ -56,19 +56,11 @@ class ContactForm extends React.Component {
   };
 
   render() {
-<<<<<<< HEAD
     const {errMessage, res_id} = this.state;
     return (
       <>
       {errMessage && errMessage.errors.map((error, index) => <p key={index} style={{ color: "red" }}>{error}</p>)}
         <form id={`contact_form${res_id}`} onSubmit={this.onFormSubmit}>
-=======
-    const { errMessage } = this.state;
-    return (
-      <>
-        {errMessage && errMessage.errors.map((error) => <p style={{ color: "red" }}>{error}</p>)}
-        <form id="contact_form" onSubmit={this.onFormSubmit}>
->>>>>>> cd5aeb68a493420e506fea34f06a8ec3980673a6
           <ul>
             <li>
               <input type="text" name="name" id="name" placeholder="Name" onChange={this.onInputChange} />

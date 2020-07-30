@@ -60,7 +60,6 @@ class Styles extends React.Component {
       border: this.state.border,
       header: this.state.header,
     });
-    console.log(jsonData);
     const body = {
       style: {
         style_data: jsonData,
@@ -68,7 +67,7 @@ class Styles extends React.Component {
     };
     console.log(this.state.style);
     try {
-      const response = await fetch(
+      await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/styles/${this.state.style.id}`,
         {
           method: "PUT",

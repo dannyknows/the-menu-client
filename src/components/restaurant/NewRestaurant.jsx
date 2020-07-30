@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 // components
 import OpeningHours from "../user/OpeningHours";
@@ -7,15 +6,6 @@ import ContactInfo from "../user/ContactInfo";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import Menu from "./Menu";
 import Styles from "../shared/Styles";
-
-const ColorBlock = styled.input`
-  height: 50px;
-  width: 50px;
-  padding: 0;
-  border: none;
-  margin-right: 2.5px;
-  margin-left: 2.5px;
-`;
 
 class NewRestaurant extends React.Component {
   static contextType = RestaurantsContext;
@@ -63,12 +53,6 @@ class NewRestaurant extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const styles = {
-      headerColour: this.state.headerColour,
-      fontColour: this.state.fontColour,
-      foregroundColour: this.state.foregroundColour,
-      backgroundColour: this.state.backgroundColour,
-    };
     const body = {
       restaurant: {
         name: this.state.restaurant_name,
@@ -115,7 +99,7 @@ class NewRestaurant extends React.Component {
       <>
         <form onSubmit={this.handleSubmit}>
           <p>Restaurant Name:</p>
-          {errMessage && errMessage.errors.map((error, index) => <p key={index}style={{ color: "red" }}>{error}</p>)}
+          {errMessage && errMessage.errors.map((error, index) => <p key={index} style={{ color: "red" }}>{error}</p>)}
           <input
             type="text"
             id="resName"

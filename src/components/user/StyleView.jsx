@@ -5,8 +5,6 @@ import {RestaurantsContext} from "../../context/restaurants-context";
 class StyleView extends React.Component {
   static contextType = RestaurantsContext;
   state = {
-    background: "",
-    textColour: "",
     theme: this.props.theme,
     style: this.props.style
   }

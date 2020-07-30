@@ -66,7 +66,7 @@ class Sizes extends React.Component {
     };
 
     try {
-      const response = await fetch(
+      await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/items/${size.item_id}/sizes/${size.id}`,
         {
           method: "PUT",
