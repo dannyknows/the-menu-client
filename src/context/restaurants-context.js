@@ -23,6 +23,7 @@ const setStyle = (value) => {
 function dispatch(action, value) {
   switch (action) {
     case "populate":
+      console.log(value);
       this.setState({
         restaurants: value.restaurants,
         auth: true,
