@@ -21,15 +21,15 @@ const Preview = styled.div`
   background: ${(props) => props.bgColor || "palevioletred"};
   border: 2px solid ${(props) => props.borderColour};
   border-radius: 3px;
-  .foreground{
+  .foreground {
     text-align: center;
     background: ${(props) => props.foreground || "white"};
     margin: 2px;
     padding: 2px;
     height: 41px;
     border: 2px solid ${(props) => props.borderColour};
-    h3{
-      color: ${(props) => props.header}
+    h3 {
+      color: ${(props) => props.header};
     }
   }
 `;
@@ -68,17 +68,14 @@ class Styles extends React.Component {
     };
     console.log(this.state.style);
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/styles/${this.state.style.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/styles/${this.state.style.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(body),
+      });
       this.state.style.style_data = jsonData;
       this.context.dispatch("new style", {
         type: "Restaurant",
@@ -100,17 +97,14 @@ class Styles extends React.Component {
         styleable_id: this.props.id,
       };
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/styles`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-            body: JSON.stringify(body),
-          }
-        );
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/styles`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(body),
+        });
         const newStyle = await response.json();
         this.setState({ style: newStyle });
         this.context.dispatch("new style", {
@@ -126,8 +120,10 @@ class Styles extends React.Component {
   render() {
     console.log(this.props.style);
     return (
-      <div>
+      <div className={"styleSelector"}>
+        <h3>Colour Scheme:</h3>
         <Preview
+          className={"preview"}
           type="text"
           bgColor={this.state.background}
           textColor={this.state.color}
@@ -140,53 +136,49 @@ class Styles extends React.Component {
             <p>text</p>
           </div>
         </Preview>
-        <div>
+        <div className={"colorSel"}>
           <label htmlFor="Colour">
-            <p>Colour Scheme:</p>
             <div>
-              <ColorBlock
-                type="color"
-                value={this.state.header}
-                onChange={this.onInputChange}
-                id="header"
-              />
-              <p>Header Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.color}
-                onChange={this.onInputChange}
-                id="color"
-              />
-              <p>Font Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.foreground}
-                onChange={this.onInputChange}
-                id="foreground"
-              />
-              <p>Foreground Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.background}
-                onChange={this.onInputChange}
-                id="background"
-              />
-              <p>Background Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.border}
-                onChange={this.onInputChange}
-                id="border"
-              />
-              <p>Border Colour</p>
+              <div>
+                <ColorBlock
+                  type="color"
+                  value={this.state.header}
+                  onChange={this.onInputChange}
+                  id="header"
+                />
+                <p>Header Colour</p>
+              </div>
+              <div>
+                <ColorBlock type="color" value={this.state.color} onChange={this.onInputChange} id="color" />
+                <p>Font Colour</p>
+              </div>
+              <div>
+                <ColorBlock
+                  type="color"
+                  value={this.state.foreground}
+                  onChange={this.onInputChange}
+                  id="foreground"
+                />
+                <p>Foreground Colour</p>
+              </div>
+              <div>
+                <ColorBlock
+                  type="color"
+                  value={this.state.background}
+                  onChange={this.onInputChange}
+                  id="background"
+                />
+                <p>Background Colour</p>
+              </div>
+              <div>
+                <ColorBlock
+                  type="color"
+                  value={this.state.border}
+                  onChange={this.onInputChange}
+                  id="border"
+                />
+                <p>Border Colour</p>
+              </div>
             </div>
             <button onClick={this.updateStyles}>Save Colours</button>
           </label>
