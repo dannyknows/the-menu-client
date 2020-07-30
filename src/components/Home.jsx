@@ -1,29 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { RestaurantsContext } from "../context/restaurants-context";
+import LoggedInButtons from "./user/LoggedInButtons";
 
 class Home extends React.Component {
   static contextType = RestaurantsContext;
-
-  handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("auth");
-    this.context.dispatch("logout");
-    const { history } = this.props;
-    if (history) history.push("/");
-  };
 
   render() {
     return (
       <div className="home">
         <header>
         {this.context.currentUser || localStorage.getItem("auth") ? (
-          <>
-            <Link className="button2" to="/dashboard">Dashboard</Link>
-            <button className="button2" id="logout" onClick={() => this.handleLogout()}>
-              Logout
-            </button>
-          </>
+          <LoggedInButtons />
         ) : (
           <>
             <Link className="button2" to="/login">Login</Link>
