@@ -25,10 +25,10 @@ class Styles extends React.Component {
   static useContext = RestaurantsContext;
   state = {
     foreground: this.props.style.style_data.foreground,
-    background: this.props.style.style_data.foreground,
-    color: this.props.style.style_data.foreground ,
-    border: this.props.style.style_data.foreground ,
-    header: this.props.style.style_data.foreground ,
+    background: this.props.style.style_data.background,
+    color: this.props.style.style_data.color ,
+    border: this.props.style.style_data.border ,
+    header: this.props.style.style_data.header ,
     style: this.props.style,
   };
 
@@ -137,9 +137,9 @@ class Styles extends React.Component {
             <div>
               <ColorBlock
                 type="color"
-                value={this.state.background}
+                value={this.state.header}
                 onChange={this.onInputChange}
-                id="background"
+                id="header"
               />
               <p>Header Colour</p>
             </div>
@@ -155,18 +155,18 @@ class Styles extends React.Component {
             <div>
               <ColorBlock
                 type="color"
-                value={this.state.foregroundColour}
+                value={this.state.foreground}
                 onChange={this.onInputChange}
-                id="foregroundColour"
+                id="foreground"
               />
               <p>Foreground Colour</p>
             </div>
             <div>
               <ColorBlock
                 type="color"
-                value={this.state.backgroundColour}
+                value={this.state.background}
                 onChange={this.onInputChange}
-                id="backgroundColour"
+                id="background"
               />
               <p>Background Colour</p>
             </div>

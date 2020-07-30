@@ -18,20 +18,21 @@ const MenuDiv = styled.div`
 `;
 
 const Menu = (props) => {
-  const { title, items } = props.menu;
-  return (
-    <MenuDiv styles={props.menu.styles.styles_data}>
-      <div className={"title"} id={`${title}`}>
-        <h2>{title}</h2>
-      </div>
-      <div className={"items"}>
-        {items &&
-          items.map((item) => {
-            return <Item item={item} />;
-          })}
-      </div>
-    </MenuDiv>
-  );
+  // const { title, items } = props.menu;
+  // return (
+  //   <MenuDiv styles={props.menu.styles.styles_data}>
+  //     <div className={"title"} id={`${title}`}>
+  //       <h2>{title}</h2>
+  //     </div>
+  //     <div className={"items"}>
+  //       {items &&
+  //         items.map((item) => {
+  //           return <Item item={item} />;
+  //         })}
+  //     </div>
+  //   </MenuDiv>
+  // );
+  return null
 };
 
 export default Menu;
