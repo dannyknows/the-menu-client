@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 const Banner = styled.h1`
-  width: 100vw;
+  width: 100%;
   background: #afba6a;
   color: white;
-  padding: 0.25em 1em;
+  padding-top: 0.25em 1em;
+  padding-bottom: 0.25em 1em;
   text-align: center;
   margin-bottom: 10px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;

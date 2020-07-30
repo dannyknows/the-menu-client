@@ -4,8 +4,9 @@ import React from "react";
 import OpeningHours from "../user/OpeningHours";
 import ContactInfo from "../user/ContactInfo";
 import { RestaurantsContext } from "../../context/restaurants-context";
-import Menu from "./Menu";
+import Menu from "./menu";
 import Styles from "../shared/Styles";
+import Banner from "../shared/Banner";
 
 class NewRestaurant extends React.Component {
   static contextType = RestaurantsContext;
@@ -61,17 +62,14 @@ class NewRestaurant extends React.Component {
     };
 
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/restaurants`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(body),
+      });
       if (response.status >= 400) {
         const errors = await response.json();
         throw errors;
@@ -89,59 +87,72 @@ class NewRestaurant extends React.Component {
         });
       }
     } catch (err) {
-      this.setState({errMessage: err});
+      this.setState({ errMessage: err });
     }
   };
 
   render() {
     const { errMessage } = this.state;
-    return this.state.status === "restaurant" ? (
-      <>
-        <form onSubmit={this.handleSubmit}>
-          <p>Restaurant Name:</p>
-          {errMessage && errMessage.errors.map((error, index) => <p key={index} style={{ color: "red" }}>{error}</p>)}
-          <input
-            type="text"
-            id="resName"
-            placeholder="Name"
-            value={this.state.restaurant_name}
-            onChange={this.handleChange}
-            data-testid="name"
-          />
-          <input type="submit" value="Submit" />
-        </form>
-      </>
-    ) : (
-      <div>
-        <p>Restaurant Name:</p>
-        <h1>{this.state.restaurant_name}</h1>
-        <hr />
-        <p>Opening Hours:</p>
-        <OpeningHours
-          setOpeningHours={this.setOpeningHours}
-          opening_hours={{ opening_hours: [] }}
-          restaurantId={this.state.restaurant.id}
-        />
-        <p>Contact Details:</p>
-        <ContactInfo restaurant={this.state.restaurant} />
-        <Menu
-          restaurant={this.context.restaurants[this.state.restaurant_index]}
-          new_status={false}
-        />
-        <Styles
-          type={"Restaurant"}
-          id={this.state.restaurant.id}
-          new={true}
-          style={{
-            style_data: {
-              foreground: "#00000000",
-              background: "#000000FF",
-              color: "#FFFFFFFF",
-              border: "#000000FF",
-              header: "#000000FF",
-            },
-          }}
-        />
+    return (
+      <div className={"newRestaurant"}>
+        <Banner> Create a New Restaurant</Banner>
+        <div>
+          {this.state.status === "restaurant" ? (
+            <div className={"name"}>
+              <form onSubmit={this.handleSubmit}>
+                <p>Restaurant Name:</p>
+                {errMessage && errMessage.errors.map((error, index) => <p key={index} style={{ color: "red" }}>{error}</p>)}
+                <input
+                  type="text"
+                  id="resName"
+                  placeholder="Name"
+                  value={this.state.restaurant_name}
+                  onChange={this.handleChange}
+                  data-testid="name"
+                />
+                <input className={"button"} type="submit" value="Submit" />
+              </form>
+            </div>
+          ) : (
+            <div className={"form"}>
+              <p>Restaurant Name:</p>
+              <h1>{this.state.restaurant_name}</h1>
+              <hr />
+              <div className={"openingHours block"}>
+                <p>Opening Hours:</p>
+                <OpeningHours
+                  setOpeningHours={this.setOpeningHours}
+                  opening_hours={{ opening_hours: [] }}
+                  restaurantId={this.state.restaurant.id}
+                />
+              </div>
+              <div className={"contactDetails block"}>
+                <p>Contact Details:</p>
+                <ContactInfo restaurant={this.state.restaurant} />
+                <Menu restaurant={this.context.restaurants[this.state.restaurant_index]} new_status={false} />
+              </div>
+              <Styles
+                className={"block"}
+                type={"Restaurant"}
+                id={this.state.restaurant.id}
+                new={true}
+                style={{
+                  style_data: {
+                    foreground: "#00000000",
+                    background: "#000000FF",
+                    color: "#FFFFFFFF",
+                    border: "#000000FF",
+                    header: "#000000FF",
+                  },
+                }}
+              />
+              <Link class={"button"} to={`/dashboard`}>
+                {" "}
+                Dashboard{" "}
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

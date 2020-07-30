@@ -98,17 +98,14 @@ class Styles extends React.Component {
         styleable_id: this.props.id,
       };
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/styles`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-            body: JSON.stringify(body),
-          }
-        );
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/styles`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(body),
+        });
         const newStyle = await response.json();
         this.setState({ style: newStyle });
         this.context.dispatch("new style", {
@@ -124,9 +121,10 @@ class Styles extends React.Component {
   render() {
     return (
       <div>
-        <div>
+        <div className={"colorSel"}>
           <label htmlFor="Colour" className="mainColourSelection">
         <Preview
+          className={"preview"}
           type="text"
           bgColor={this.state.background}
           textColor={this.state.color}
