@@ -64,7 +64,7 @@ class SignUp extends React.Component {
         </header>
         <div className="login-box">
           <h2>Sign Up</h2>
-          {errMessage && errMessage.errors.map((error) => <p style={{ color: "red" }}>{error}</p>)}
+          {errMessage && errMessage.errors.map((error, index) => <p key={index} style={{ color: "red" }}>{error}</p>)}
           <form onSubmit={this.onFormSubmit}>
             <div className="user-box">
               <input

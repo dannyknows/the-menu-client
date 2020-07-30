@@ -45,12 +45,12 @@ const MenuStyle = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  .seperator{
+  .seperator {
     width: 80vw;
     height: 3px;
     background: black;
   }
-  h2{
+  h2 {
     text-align: center;
     margin-bottom: 10px;
   }
@@ -58,9 +58,9 @@ const MenuStyle = styled.div`
 const ItemsStyle = styled.div`
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 `;
-
 
 export default class Restaurant extends Component {
   state = { subdomain: this.props.match.params.subdomain, restaurant: {} };
@@ -79,7 +79,11 @@ export default class Restaurant extends Component {
   }
 
   renderRestaurant(restaurant) {
-    const { name, menus, contact_infos, style } = restaurant;
+    const { name, menus, contact_infos, style, opening_hours } = restaurant;
+    let oh = "";
+    if (opening_hours) {
+      oh = JSON.parse(opening_hours);
+    }
     if (restaurant.style) {
       const { style_data } = restaurant.style;
       const styleData = JSON.parse(style_data);
@@ -95,10 +99,28 @@ export default class Restaurant extends Component {
           <div className="foreground">
             <h1>{restaurant.name}</h1>
             <hr />
+            {opening_hours && (
+              <Contacts>
+                <h3>Contact Information</h3>
+                <div className="contacts">
+                  {oh.opening_hours.map((oh,index) => {
+                    return (
+                      <div key={index}>
+                        <b>{oh.day}</b>: {oh.opening_hours.open_hr}:
+                        {oh.opening_hours.open_min}
+                        {oh.opening_hours.open_ampm} to{" "}
+                        {oh.closing_hours.close_hr}:{oh.closing_hours.close_min}
+                        {oh.closing_hours.close_ampm}
+                      </div>
+                    );
+                  })}
+                </div>
+              </Contacts>
+            )}
             {contact_infos && (
-            <Contacts>
-              <h3>Contact Information</h3>
-              <div className="contacts">
+              <Contacts>
+                <h3>Contact Information</h3>
+                <div className="contacts">
                   {contact_infos.map((contactInfo, ciIndex) => {
                     return (
                       <div className="singleContact" key={ciIndex}>
@@ -106,26 +128,26 @@ export default class Restaurant extends Component {
                       </div>
                     );
                   })}
-              </div>
-            </Contacts>)}
+                </div>
+              </Contacts>
+            )}
+
             {/* <Nav menus={menus} name={name} style={styles}/> */}
-            <MenuStyle>
-              {menus &&
-                menus.map((menu) => {
-                  return (
-                    <div>
+            {menus &&
+              menus.map((menu, index) => {
+                return (
+                  <MenuStyle key={index}>
                     <h2> {menu.title} </h2>
-                    <div className="seperator"/>
-                      <ItemsStyle>
-                        {menu.items &&
-                          menu.items.map((item) => {
-                            return <Item item={item} />;
+                    <div className="seperator" />
+                    <ItemsStyle>
+                      {menu.items &&
+                        menu.items.map((item, index) => {
+                          return <Item key={index} item={item} />;
                         })}
                     </ItemsStyle>
-                    </div>
-                  );
-                })}
-            </MenuStyle>
+                  </MenuStyle>
+                );
+              })}
           </div>
         </RestaurantStyle>
       );

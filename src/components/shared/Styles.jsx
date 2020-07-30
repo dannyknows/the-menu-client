@@ -21,15 +21,15 @@ const Preview = styled.div`
   background: ${(props) => props.bgColor || "palevioletred"};
   border: 2px solid ${(props) => props.borderColour};
   border-radius: 3px;
-  .foreground{
+  .foreground {
     text-align: center;
     background: ${(props) => props.foreground || "white"};
     margin: 2px;
     padding: 2px;
     height: 41px;
     border: 2px solid ${(props) => props.borderColour};
-    h3{
-      color: ${(props) => props.header}
+    h3 {
+      color: ${(props) => props.header};
     }
   }
 `;
@@ -39,9 +39,9 @@ class Styles extends React.Component {
   state = {
     foreground: this.props.style.style_data.foreground,
     background: this.props.style.style_data.background,
-    color: this.props.style.style_data.color ,
-    border: this.props.style.style_data.border ,
-    header: this.props.style.style_data.header ,
+    color: this.props.style.style_data.color,
+    border: this.props.style.style_data.border,
+    header: this.props.style.style_data.header,
     style: this.props.style,
   };
 
@@ -127,6 +127,8 @@ class Styles extends React.Component {
     console.log(this.props.style);
     return (
       <div>
+        <div>
+          <label htmlFor="Colour" className="mainColourSelection">
         <Preview
           type="text"
           bgColor={this.state.background}
@@ -140,53 +142,53 @@ class Styles extends React.Component {
             <p>text</p>
           </div>
         </Preview>
-        <div>
-          <label htmlFor="Colour">
-            <p>Colour Scheme:</p>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.header}
-                onChange={this.onInputChange}
-                id="header"
-              />
-              <p>Header Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.color}
-                onChange={this.onInputChange}
-                id="color"
-              />
-              <p>Font Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.foreground}
-                onChange={this.onInputChange}
-                id="foreground"
-              />
-              <p>Foreground Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.background}
-                onChange={this.onInputChange}
-                id="background"
-              />
-              <p>Background Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.border}
-                onChange={this.onInputChange}
-                id="border"
-              />
-              <p>Border Colour</p>
+            <h4>Colour Scheme:</h4>
+            <div className="colourSelector">
+              <div className="singleColour">
+                <ColorBlock
+                  type="color"
+                  value={this.state.header}
+                  onChange={this.onInputChange}
+                  id="header"
+                />
+                <p>Header Colour</p>
+              </div>
+              <div className="singleColour">
+                <ColorBlock
+                  type="color"
+                  value={this.state.color}
+                  onChange={this.onInputChange}
+                  id="color"
+                />
+                <p>Font Colour</p>
+              </div>
+              <div className="singleColour">
+                <ColorBlock
+                  type="color"
+                  value={this.state.foreground}
+                  onChange={this.onInputChange}
+                  id="foreground"
+                />
+                <p>Foreground Colour</p>
+              </div>
+              <div className="singleColour">
+                <ColorBlock
+                  type="color"
+                  value={this.state.background}
+                  onChange={this.onInputChange}
+                  id="background"
+                />
+                <p>Background Colour</p>
+              </div>
+              <div className="singleColour">
+                <ColorBlock
+                  type="color"
+                  value={this.state.border}
+                  onChange={this.onInputChange}
+                  id="border"
+                />
+                <p>Border Colour</p>
+              </div>
             </div>
             <button onClick={this.updateStyles}>Save Colours</button>
           </label>
