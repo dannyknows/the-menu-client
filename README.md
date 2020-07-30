@@ -470,9 +470,9 @@ Our development process was very similar to what was outlined above with us disc
 
 ![Day 7 Trello](./resources/trello/Screenshot_2020-07-20%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
-Daniel Ask: Spent the day setting up the rails back end and practicing TDD pair programming making unit tests and setting up our models.
+Daniel Ask: Spent the day setting up the rails back end and practising TDD pair programming making unit tests and setting up our models.
 
-Danny Lowater:
+Danny Lowater: Pair programmed, following ERDs and set up React front end
 
 ### Tuesday 21-07-2020
 
@@ -480,7 +480,7 @@ Danny Lowater:
 
 Daniel Ask: Continued doing some pair programming and setting up the back end models. Also set up active storage and AWS for potential future use. Started on setting up back end authentication.
 
-Danny Lowater:
+Danny Lowater: Continued pair programming, creating models and associated tests.
 
 ### Wednesday 22-07-2020
 
@@ -488,7 +488,7 @@ Danny Lowater:
 
 Daniel Ask: Finished user authentication in the back end and set up basic authentication on the front end. Installed and initialised cypress end to end testing creating one cypress test. Finished unit testing and models creation.
 
-Danny Lowater:
+Danny Lowater: Researched subdomains, front end frame css frameworks, continued model creation. Created seeds file
 
 ### Thursday 23-07-2020
 
@@ -496,16 +496,15 @@ Danny Lowater:
 
 Daniel Ask: Finished validation testing for the back end. Started on controller testing and controller creation.
 
-Danny Lowater:
+Danny Lowater: Begun work on the react app, created, menu and item styled components
 
 ### Friday 24-07-2020
 
 ![Day 11 Trello](./resources/trello/Screenshot_2020-07-24%20T3A2%20-%20Final%20Project%20Trello.jpg)
 
-Daniel Ask: Finished controller request testing and controller creation.Initialied context. Moved to front end and started setting up fetch requests for the user dashboard
+Daniel Ask: Finished controller request testing and controller creation. Initialised context. Moved to front end and started setting up fetch requests for the user dashboard
 
-Danny Lowater:
-
+Danny Lowater: Continued work on Front end, researching and designing best path forward for custom styles
 
 ### Saturday 25-07-2020
 
@@ -513,7 +512,7 @@ Danny Lowater:
 
 Daniel Ask: Added jbuilder to make better formatted json responses. Continued implementing the dashboard starting with adding adding contact info. Finished implementing context.
 
-Danny Lowater:
+Danny Lowater: Tweaked seeds to suit actual front end behaviour, continued working on styled components and front end
 
 ### Sunday 26-07-2020
 
@@ -521,7 +520,7 @@ Danny Lowater:
 
 Daniel Ask: Finished showing restaurants in the dashboards and contact info create read update and delete. Started implementing opening hours create read update delete from the front end. Changed the back end to get user information and display and edit in the dashboard. Experimented in creating dynamic editable fields.
 
-Danny Lowater:
+Danny Lowater: refactored and styled menus and menu items
 
 ### Monday 27-07-2020
 
@@ -529,7 +528,7 @@ Danny Lowater:
 
 Daniel Ask: Started adding new restaurant view and forms. Finished opening hours. Started menu read update and delete for dashboard and new restaurant. Added styling to the home page, log in and sign up pages.
 
-Danny Lowater:
+Danny Lowater: Began work on restaurant styles, created protected routes
 
 ### Tuesday 28-07-2020
 
@@ -537,7 +536,7 @@ Danny Lowater:
 
 Daniel Ask: Finished menus create update and delete and added Items create update and delete including sizes and ingredients for Items.
 
-Danny Lowater:
+Danny Lowater: worked through props and auth logic for protected routes. continued styling
 
 ### Wednesday 29-07-2020
 
@@ -545,7 +544,7 @@ Danny Lowater:
 
 Daniel Ask: Finished the new restaurant implementation. Deployed to heroku and netlify. Started adding custom colour styles for restaurants.
 
-Danny Lowater:
+Danny Lowater: began code refactoring and styling dashboard
 
 ### Thursday 30-07-2020
 
@@ -553,7 +552,7 @@ Danny Lowater:
 
 Daniel Ask: Finished off restaurant style manipulation and finished off manual testing. Fixed some bugs. Set up the read me adding links, task management, trello shots, libraries and the set up guide.
 
-Danny Lowater:
+Danny Lowater: Finished off styling for restaurant, new restaurant and dashboard
 
 # Code Coverage Report
 
