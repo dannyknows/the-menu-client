@@ -106,6 +106,7 @@ class NewRestaurant extends React.Component {
             placeholder="Name"
             value={this.state.restaurant_name}
             onChange={this.handleChange}
+            data-testid="name"
           />
           <input type="submit" value="Submit" />
         </form>

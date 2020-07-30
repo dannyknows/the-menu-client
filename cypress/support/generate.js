@@ -8,6 +8,13 @@ const userBuilder = build('User', {
   }
 })
 
+const restaurantBuilder = build('Restaurant', {
+  fields: {
+    name: fake((f) => f.name.findName())
+  }
+})
+
 export {
-  userBuilder
+  userBuilder,
+  restaurantBuilder
 }

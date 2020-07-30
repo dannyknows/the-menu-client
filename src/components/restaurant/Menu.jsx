@@ -190,6 +190,7 @@ class Menu extends React.Component {
             id="new_menu_name"
             placeholder="Title"
             onChange={this.onInputChange}
+            data-testid="title"
           />
           <input type="submit" value="Add Menu" />
         </form>
