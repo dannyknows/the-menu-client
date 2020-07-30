@@ -1,0 +1,84 @@
+.newRestaurant {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  button {
+    border: solid 2px $blue;
+    height: 40px;
+    flex-grow: 1;
+    margin: 2px;
+    padding: 5px;
+    border-radius: $borderRadius;
+    display: flex;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    justify-content: center;
+  }
+  .button {
+    border: solid 2px $blue;
+    height: 40px;
+    flex-grow: 1;
+    margin: 2px;
+    padding: 5px;
+    border-radius: $borderRadius;
+    display: flex;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    justify-content: center;
+  }
+  .name {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 3em;
+    border: 1px solid $grey;
+    border-radius: $borderRadius;
+  }
+  .formGrid {
+    ul {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      width: $desktopWidth;
+      padding: 0px;
+      li {
+        list-style-type: none;
+        height: 50px;
+        border: solid 1px $grey;
+        margin: 2px;
+        padding: 2px;
+        border-radius: $borderRadius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      li:last-of-type {
+        border: transparent;
+      }
+    }
+    // MOBILE
+    @media only screen and (max-width: 600px) {
+      ul {
+        align-self: center;
+        justify-self: center;
+        width: $mobileWidth;
+        display: grid;
+        grid-template-columns: 33% 34% 33%;
+        list-style-type: none;
+        li:last-of-type {
+          border: transparent;
+          grid-column: 1 / span 3;
+        }
+      }
+    }
+  }
+  .form {
+    .block {
+      margin-top: 5vh;
+    }
+  }
+}

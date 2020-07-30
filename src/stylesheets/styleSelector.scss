@@ -1,0 +1,17 @@
+.styleSelector {
+  .prev {
+  }
+  .colorSel {
+    width: $desktopWidth;
+    label div {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      div {
+        margin: 2px;
+        p {
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+}
