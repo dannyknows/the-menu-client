@@ -25,23 +25,33 @@ class ContactForm extends React.Component {
           info: this.state.info,
         },
       };
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/restaurants/${this.state.res_id}/contact_infos`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify(body),
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/restaurants/${this.state.res_id}/contact_infos`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify(body),
+          }
+        );
+        if (response.status >= 400) {
+          const error = await response.json();
+          throw error;
+        }else{
+          const newContactInfo = await response.json();
+          this.context.dispatch("new contact", newContactInfo);
+          this.props.update()
+          this.setState({ info_type: "link", name: undefined, info: undefined });
+          // const { history } = this.props;
+          // if (history) history.push("/dashboard");
         }
-      );
-      const newContactInfo = await response.json();
-      this.context.dispatch("new contact", newContactInfo);
-      this.props.update()
-      this.setState({ info_type: "link", name: undefined, info: undefined });
-      // const { history } = this.props;
-      // if (history) history.push("/dashboard");
+      } catch (err) {
+        console.log(err.errors);
+        this.setState({errMessage: err});
+      }
     }else{
       
     }
@@ -49,8 +59,10 @@ class ContactForm extends React.Component {
   };
 
   render() {
+    const {errMessage} = this.state;
     return (
       <>
+      {errMessage && errMessage.errors.map((error) => <p style={{ color: "red" }}>{error}</p>)}
         <form id="contact_form" onSubmit={this.onFormSubmit}>
           <ul>
             <li>

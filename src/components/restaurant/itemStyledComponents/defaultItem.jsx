@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const ItemDiv = styled.div`
+  width: 200px;
+  margin: 1em;
+  padding: 0.5em;
+  border: 1px solid black;
   margin-bottom: 20px;
   h3 {
+    text-align: center;
     margin: 5px;
     margin-left: 0px;
   }
