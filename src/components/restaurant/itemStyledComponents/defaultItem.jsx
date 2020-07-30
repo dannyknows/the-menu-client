@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const ItemDiv = styled.div`
-  width: 200px;
-  margin: 1em;
-  padding: 0.5em;
-  border: 1px solid black;
-  margin-bottom: 20px;
   h3 {
     text-align: center;
     margin: 5px;
@@ -57,12 +52,13 @@ class Default extends Component {
                 })
                 .join(", ")}
           </p>
-          <h4>
+          <p>
+            {ingredients && <b>Tags: </b>}
             {tags &&
               tags.map((item) => {
                 return item.name;
               })}
-          </h4>
+          </p>
         </div>
       </ItemDiv>
     );

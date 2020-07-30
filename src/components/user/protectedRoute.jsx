@@ -5,8 +5,8 @@ import Restaurant from "../restaurant/restaurant";
 import Buffer from "../buffer";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import Item from "../user/Item";
-import StyleView from './StyleView';
-import NewRestaurant from '../restaurant/NewRestaurant';
+import StyleView from "./StyleView";
+import NewRestaurant from "../restaurant/NewRestaurant";
 
 class ProtectedRoute extends Component {
   static contextType = RestaurantsContext;
@@ -17,12 +17,13 @@ class ProtectedRoute extends Component {
 
   async componentDidMount() {
     const token = localStorage.getItem("token");
-     const auth = localStorage.getItem("auth");
+    const auth = localStorage.getItem("auth");
     if (token && auth) {
-        this.setState({
-          auth: true,
-          loading: false})
-        }
+      this.setState({
+        auth: true,
+        loading: false,
+      });
+    }
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants`, {
         headers: {
@@ -42,18 +43,18 @@ class ProtectedRoute extends Component {
           if (response.status >= 400) {
             throw new Error("not authorized");
           } else {
-            const {user}= await response.json();
+            const { user } = await response.json();
             // localStorage.setItem('token', jwt)
             const token = localStorage.getItem("token");
             const auth = localStorage.getItem("auth");
-            this.context.dispatch("populate", {restaurants,user});
+            this.context.dispatch("populate", { restaurants, user });
             this.setState({
               auth: true,
               loading: false,
             });
           }
         } catch (err) {
-          console.log(err)
+          console.log(err);
         }
       }
     } catch (err) {
@@ -62,7 +63,7 @@ class ProtectedRoute extends Component {
       });
     }
   }
-  
+
   render() {
     const { loading, auth } = this.state;
     if (!loading && !auth) {

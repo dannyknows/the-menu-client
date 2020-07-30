@@ -1,0 +1,147 @@
+$grey: #c4c4c4;
+$blue: #03e8f3;
+$desktopWidth: 90vw;
+$mobileWidth: 95;
+$borderRadius: 8px;
+
+.dashboard {
+  button {
+    border: solid 2px $blue;
+    height: 40px;
+    flex-grow: 1;
+    margin: 2px;
+    padding: 5px;
+    border-radius: $borderRadius;
+    display: flex;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    justify-content: center;
+  }
+  .button {
+    border: solid 2px $blue;
+    height: 40px;
+    flex-grow: 1;
+    margin: 2px;
+    padding: 5px;
+    border-radius: $borderRadius;
+    display: flex;
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    justify-content: center;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .account {
+    display: flex;
+    flex-direction: column;
+    width: $desktopWidth;
+    h2 {
+      text-align: center;
+    }
+    div {
+      width: auto;
+      div {
+        display: flex;
+      }
+    }
+  }
+  .restaurant {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h4 {
+      text-align: center;
+    }
+    .edit-delete-container {
+      display: flex;
+      .button {
+        height: auto;
+      }
+    }
+  }
+  .formGrid {
+    ul {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      width: $desktopWidth;
+      padding: 0px;
+      li {
+        list-style-type: none;
+        height: 50px;
+        border: solid 1px $grey;
+        margin: 2px;
+        padding: 2px;
+        border-radius: $borderRadius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      li:last-of-type {
+        border: transparent;
+      }
+    }
+    // MOBILE
+    @media only screen and (max-width: 600px) {
+      ul {
+        align-self: center;
+        justify-self: center;
+        width: $mobileWidth;
+        display: grid;
+        grid-template-columns: 33% 34% 33%;
+        list-style-type: none;
+        li:last-of-type {
+          border: transparent;
+          grid-column: 1 / span 3;
+        }
+      }
+    }
+  }
+  .menu {
+    margin-top: 5vh;
+    padding: 5px;
+    width: $desktopWidth;
+    .item {
+      display: flex;
+      flex-direction: column;
+      border: solid $grey 1px;
+      padding: 5px;
+      margin: 5px;
+      border-radius: $borderRadius;
+      .controls {
+        display: flex;
+        margin-top: auto;
+        button {
+          flex-grow: 1;
+        }
+      }
+    }
+    button {
+      flex-grow: 0;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      p {
+        font-size: 2em;
+        font-weight: bold;
+      }
+    }
+    .menuBody {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      @media only screen and (max-width: 768px) {
+        grid-template-columns: 100%;
+      }
+    }
+    .footer {
+      display: flex;
+      button {
+        flex-grow: 1
+      }
+    }
+  }
+}
