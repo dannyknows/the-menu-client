@@ -1,5 +1,4 @@
 import React from "react";
-import Table from "../shared/Table";
 
 class OpeningHours extends React.Component {
   state = {
@@ -105,8 +104,7 @@ class OpeningHours extends React.Component {
 
   render() {
     return (
-      <div>
-        <Table>
+      <div className={"formGrid"}>
           {this.state.opening_hours.map((oh, index) => {
             return index === this.state.edit_oh_index ? (
               <form id="opening_hours_form" onSubmit={this.saveEditHours}>
@@ -366,11 +364,10 @@ class OpeningHours extends React.Component {
                 </select>
               </li>
               <li>
-                <input type="submit" value="Add Opening Hours" />
+                <input className={"button"}type="submit" value="Add" />
               </li>
             </ul>
           </form>
-        </Table>
       </div>
     );
   }
