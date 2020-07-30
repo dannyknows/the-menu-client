@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import OpeningHours from "./OpeningHours";
 import ContactInfo from "./ContactInfo";
 import Menu from "../restaurant/Menu";
+import Styles from "../shared/Styles";
 
 class UserRestaurants extends React.Component {
   static contextType = RestaurantsContext;
@@ -11,13 +12,13 @@ class UserRestaurants extends React.Component {
     super(props);
     this.state = {
       width: window.innerWidth,
-      contact_id: "",
+      contactId: "",
       name: "",
       info: "",
-      info_type: "",
-      restaurant_id: "",
-      edit_contact_index: "",
-      restaurants: ""
+      infoType: "",
+      restaurantId: "",
+      editContactIndex: "",
+      restaurants: "",
     };
   }
 
@@ -56,7 +57,7 @@ class UserRestaurants extends React.Component {
             <h3>{restaurant.name} </h3>
             <OpeningHours
               opening_hours={JSON.parse(restaurant.opening_hours)}
-              restaurant_id={restaurant.id}
+              restaurantId={restaurant.id}
             />
             <ContactInfo restaurant={restaurant} index={index} />
             <Menu restaurant={restaurant} new_status={false} />
@@ -76,13 +77,20 @@ class UserRestaurants extends React.Component {
             <h4>{restaurant.subdomain}</h4>
             <OpeningHours
               opening_hours={JSON.parse(restaurant.opening_hours)}
-              restaurant_id={restaurant.id}
+              restaurantId={restaurant.id}
             />
             <ContactInfo restaurant={restaurant} index={index} />
             <Menu restaurant={restaurant} />
+            {console.log(restaurant)}
+            {/* <Styles
+              type={"Restaurant"}
+              id={restaurant.id}
+              new={false}
+              style={JSON.parse(restaurant.style.style_data)}
+            /> */}
             <div className="edit-delete-container">
               <Link to={`/restaurant/${restaurant.subdomain}`}> View </Link>
-              <button>Edit</button>
+              {/* <button>Edit</button> */}
               <button onClick={() => this.deleteRestaurant(restaurant.id)}>
                 Delete
               </button>

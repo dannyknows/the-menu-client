@@ -6,6 +6,20 @@ function findIndex(array, id) {
   });
 }
 
+const setStyle = (value) => {
+  switch (value.type) {
+    case "Restaurant":
+      this.setState((state) => {
+        const res_index = findIndex(this.state.restaurants, value.id);
+        state.restaurants[res_index].style = value.style;
+        return { restaurants: [...state.restaurants] };
+      });
+      break;
+    default:
+      console.log(value);
+  }
+};
+
 function dispatch(action, value) {
   switch (action) {
     case "populate":
@@ -41,7 +55,10 @@ function dispatch(action, value) {
       break;
     case "new menu":
       this.setState((state) => {
-        const res_index = findIndex(this.state.restaurants, value.restaurant_id);
+        const res_index = findIndex(
+          this.state.restaurants,
+          value.restaurant_id
+        );
         state.restaurants[res_index].menus.push(value);
         return { restaurants: [...state.restaurants] };
       });
@@ -80,11 +97,9 @@ function dispatch(action, value) {
           state.restaurants[res_index].menus,
           value.item.menu_id
         );
-        console.log(value)
-        console.log(menu_index)
-        state.restaurants[res_index].menus[menu_index].items.push(
-          value.item
-        );
+        console.log(value);
+        console.log(menu_index);
+        state.restaurants[res_index].menus[menu_index].items.push(value.item);
         return { restaurants: [...state.restaurants] };
       });
       break;
@@ -177,11 +192,6 @@ function dispatch(action, value) {
           state.restaurants[res_index].menus[menu_index].items,
           value.item.id
         );
-        const ingredient_index = findIndex(
-          state.restaurants[res_index].menus[menu_index].items[item_index]
-            .ingredients,
-          value.ingredient_id
-        );
         state.restaurants[res_index].menus[menu_index].items[
           item_index
         ].ingredients.splice(value.ingredient_index, 1);
@@ -242,11 +252,6 @@ function dispatch(action, value) {
           state.restaurants[res_index].menus[menu_index].items,
           value.item.id
         );
-        const ingredient_index = findIndex(
-          state.restaurants[res_index].menus[menu_index].items[item_index]
-            .ingredients,
-          value.ingredient_id
-        );
         state.restaurants[res_index].menus[menu_index].items[
           item_index
         ].sizes.splice(value.size_index, 1);
@@ -293,6 +298,9 @@ function dispatch(action, value) {
       break;
     case "logout":
       this.setState({ currentUser: false, restaurants: [], auth: false });
+      break;
+    case "new style":
+      setStyle(value);
       break;
     default:
       console.log("in default");

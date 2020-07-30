@@ -6,6 +6,7 @@ import OpeningHours from "../user/OpeningHours";
 import ContactInfo from "../user/ContactInfo";
 import { RestaurantsContext } from "../../context/restaurants-context";
 import Menu from "./Menu";
+import Styles from "../shared/Styles";
 
 const ColorBlock = styled.input`
   height: 50px;
@@ -36,7 +37,7 @@ class NewRestaurant extends React.Component {
     status: "restaurant",
     seen: false,
     current_menu: "",
-    restaurant: ""
+    restaurant: "",
   };
 
   handleChange(event) {
@@ -74,16 +75,19 @@ class NewRestaurant extends React.Component {
         opening_hours: JSON.stringify(this.state.opening_hours),
       },
     };
-    
+
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/restaurants`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/restaurants`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
       if (response.status >= 400) {
         const test = await response.json();
         throw new Error(response);
@@ -95,7 +99,7 @@ class NewRestaurant extends React.Component {
           menus: [],
         });
         this.setState({
-          restaurant_index: (this.context.restaurants.length-1),
+          restaurant_index: this.context.restaurants.length - 1,
           restaurant: { ...newRestaurantInfo, contact_infos: [], menus: [] },
           status: "contact",
         });
@@ -104,7 +108,7 @@ class NewRestaurant extends React.Component {
       console.log(err);
     }
   };
-  
+
   render() {
     return this.state.status === "restaurant" ? (
       <>
@@ -129,7 +133,7 @@ class NewRestaurant extends React.Component {
         <OpeningHours
           setOpeningHours={this.setOpeningHours}
           opening_hours={{ opening_hours: [] }}
-          restaurant_id={this.state.restaurant.id}
+          restaurantId={this.state.restaurant.id}
         />
         <p>Contact Details:</p>
         <ContactInfo restaurant={this.state.restaurant} />
@@ -137,47 +141,20 @@ class NewRestaurant extends React.Component {
           restaurant={this.context.restaurants[this.state.restaurant_index]}
           new_status={false}
         />
-        <div>
-          <label htmlFor="Colour">
-            <p>Colour Scheme:</p>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.headerColour}
-                onChange={this.handleChange}
-                id="headerColour"
-              />
-              <p>Header Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.fontColor}
-                onChange={this.handleChange}
-                id="fontColour"
-              />
-              <p>Font Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.foregroundColour}
-                onChange={this.handleChange}
-                id="foregroundColour"
-              />
-              <p>Foreground Colour</p>
-            </div>
-            <div>
-              <ColorBlock
-                type="color"
-                value={this.state.backgroundColour}
-                onChange={this.handleChange}
-                id="backgroundColour"
-              />
-              <p>Background Colour</p>
-            </div>
-          </label>
-        </div>
+        <Styles
+          type={"Restaurant"}
+          id={this.state.restaurant.id}
+          new={true}
+          style={{
+            style_data: {
+              foreground: "#00000000",
+              background: "#000000FF",
+              color: "#FFFFFFFF",
+              border: "#000000FF",
+              header: "#000000FF",
+            },
+          }}
+        />
       </div>
     );
   }

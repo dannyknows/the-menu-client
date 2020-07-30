@@ -1,6 +1,5 @@
 import React from "react";
 import { RestaurantsContext } from "../../context/restaurants-context";
-import { withRouter, NavLink } from "react-router-dom";
 
 class ContactForm extends React.Component {
   static contextType = RestaurantsContext;

@@ -47,7 +47,8 @@ class Menu extends React.Component {
         return { restaurant: { ...state.restaurant } };
       });
     }
-    document.getElementById("menu_form").reset();
+    console.log(event);
+    document.getElementById(`menu_form${this.state.restaurant.id}`).reset();
   };
 
   updateMenu = async (new_title, id) => {
@@ -184,7 +185,7 @@ class Menu extends React.Component {
             </div>
           );
         })}
-        <form id="menu_form" onSubmit={this.menuSubmit}>
+        <form id={`menu_form${this.state.restaurant.id}`} onSubmit={this.menuSubmit}>
           <input
             type="text"
             name="new_menu_name"

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Banner from "./shared/Banner";
 import { RestaurantsContext } from "../context/restaurants-context";
 
 class Home extends React.Component {

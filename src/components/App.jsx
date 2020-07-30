@@ -11,7 +11,7 @@ import SignUp from "./user/SignUp";
 import ProtectedRoute from "./user/protectedRoute";
 import { RestaurantsContext, dispatch } from '../context/restaurants-context'
 import Restaurant from "./restaurant/restaurant";
-import NewRestaurant from "./restaurant/NewRestaurant";
+import Styles from "./shared/Styles";
 
 
 class App extends React.Component {
@@ -30,6 +30,7 @@ class App extends React.Component {
           <Route exact path="/dashboard/new" component={ProtectedRoute} />
           <Route exact path="/restaurant/:subdomain" component={Restaurant} />
           <Route exact path="/restaurant/:subdomain/:state" component={ProtectedRoute}/>
+          <Route exact path="/test" component={Styles} />
           <Route component={NoMatch} />
         </Switch>
       </RestaurantsContext.Provider>
