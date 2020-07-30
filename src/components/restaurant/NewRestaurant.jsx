@@ -4,9 +4,10 @@ import React from "react";
 import OpeningHours from "../user/OpeningHours";
 import ContactInfo from "../user/ContactInfo";
 import { RestaurantsContext } from "../../context/restaurants-context";
-import Menu from "./menu";
+import Menu from "./Menu";
 import Styles from "../shared/Styles";
 import Banner from "../shared/Banner";
+import { Link } from "react-router-dom";
 
 class NewRestaurant extends React.Component {
   static contextType = RestaurantsContext;

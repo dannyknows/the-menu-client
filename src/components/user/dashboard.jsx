@@ -37,7 +37,7 @@ class Dashboard extends Component {
     return (
       <div className={"dashboard"}>
         {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
-        <Banner>Welcome Back {this.context.currentUser?.full_name}</Banner>
+        <Banner>Welcome Back {this.context.currentUser?.full_name} </Banner>
         <div className={"account"}>
           <h2>Account</h2>
           <div>
@@ -51,7 +51,7 @@ class Dashboard extends Component {
         <div className={"restaraunts"}>
           <h2>Restaurants</h2>
           <UserRestaurants getRestaurants={this.getRestaurants} />
-          <Link to="/dashboard/new">Add a New Restaurant</Link>
+          <Link className={"button"} to="/dashboard/new">Add a New Restaurant</Link>
         </div>
       </div>
     );
